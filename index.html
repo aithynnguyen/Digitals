@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="generator" content="Pixieset">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Digitals by Aithy Nguyen </title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="canonical" href="https://www.digitalsbyaithynguyen.com/">
+        <meta property="og:site_name" content="Digitals by Aithy Nguyen">
+        <meta property="og:title" content="Digitals by Aithy Nguyen">
+        <meta property="og:url" content="https://www.digitalsbyaithynguyen.com/">
+        <meta property="og:type" content="website">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+    <body>
+        <section class="header">
+            <nav>
+                <a href="index.html"><img src="logo.png"></a>
+                <div class="nav-links" id="navLinks">
+                    <i class="fa fa-times" onclick="hideMenu()"></i>
+                    <ul>
+                        <li><a href="index.html"> Home </a></li>
+                        <li><a href="cameras.html"> Cameras </a></li>
+                        <li><a href="about.html"> About </a></li>
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+        
+        <div class="text-box">
+            <h1> Digitals - 
+                <br> by Aithy Nguyen </h1>
+        </div>
+        </section>
+
+<!-- memories -->
+        <section class="memories">
+            <h1> Milestones and Memories </h1>
+            <p> Click and enjoy :) </p>
+            <div class="row ">
+                <div class="memories-row">
+                    <img src="IMG_4133.png">
+                    <a href="toronto.html" class="layer">
+                        <h3> 📍 TORONTO, ON </h3>
+                    </a>
+                </div>
+                <div class="memories-row">
+                    <img src="DSC02031.jpg">
+                    <a href="san_francisco.html" class="layer">
+                        <h3> 📍 SAN FRANCISCO, CA </h3>
+                    </a>
+                </div>
+                <div class="memories-row">
+                    <img src="DSC02053.jpg">
+                    <a href="big_sur.html" class="layer">
+                        <h3> 📍 BIG SUR, CA </h3>
+                    </a>
+                </div>
+            </div>
+            <div class="row taller">
+                <div id="twoImages" class="memories-row">
+                    <img src="IMG_5139.png">
+                    <a href="orlandoo.html" class="layer">
+                        <h3> 📍 ORLANDO, FL </h3>
+                    </a>
+                </div>
+                <div id="twoImages" class="memories-row">
+                    <img src="DSC02095.jpg">
+                    <a href="santa_monicaa.html" class="layer">
+                        <h3> 📍 SANTA MONICA, CA </h3>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="memories-row">
+                    <img src="IMG_9891.jpg">
+                    <a href="nha_trang.html" class="layer">
+                        <h3> 📍 NHA TRANG, VN </h3>
+                    </a>
+                </div>
+                <div class="memories-row">
+                    <img src="DSC02045.jpg">
+                    <a href="ho_chi_minh.html" class="layer">
+                        <h3> 📍 HỒ CHÍ MINH, VN </h3>
+                    </a>
+                </div>
+                <div class="memories-row">
+                    <img src="DSC02020.jpg">
+                    <a href="friends.html" class="layer">
+                        <h3> MY LOVELY FRIENDS </h3>
+                    </a>
+                </div>
+            </div>        
+        </section>
+
+<!-- connect -->  
+        <section class="connect">
+            <h1> Feel free to shoot me a message! </h1>
+            <a href="mailto:aithynguyen04@gmail.com"
+                <a href="#" class="hero-btn"> Connect With Me </a>
+            </a>
+        </section>
+
+<!-- footer -->
+        <section class="footer">
+            <p> This website is a side-project to learn web-development
+                <br> Feel free to leave constructive critisism! </p>
+            <div class="icons">
+                <a href="https://www.instagram.com/aithynnguyen.cam/">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/aithy-nguyen">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/aithynnguyen">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+        </section>
+
+<!-- JS for Toggle Menu -->
+        <script>
+            var navLinks = document.getElementById("navLinks");
+            function showMenu(){
+                navLinks.style.right = "0";
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+            }
+        </script>
