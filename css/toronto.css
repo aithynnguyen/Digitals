@@ -20,7 +20,7 @@ h1{
 .header{
     min-height: 45vh;
     width: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(../IMG_4133.png);
+    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(../img/IMG_4133.png);
     background-size: cover;
     background-position: center;
     position: relative;
