@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digitals by Aithy Nguyen | Photography Journal</title>
+    <meta name="description" content="A photography journal by Aithy Nguyen — capturing milestones and memories through vintage and digital lenses." />
+    <meta name="author" content="Aithy Nguyen" />
+    <meta property="og:title" content="Digitals by Aithy Nguyen" />
+    <meta property="og:description" content="A photography journal capturing milestones and memories through vintage and digital lenses." />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Decode GitHub Pages SPA redirect from /?/ back to a normal path.
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
