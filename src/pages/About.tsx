@@ -75,7 +75,7 @@ const About = () => {
           <div className="space-y-3 mb-8">
             <div className="flex gap-6">
               <span className="cv-year">2026</span>
-              <span className="cv-entry">Agile Developer @ Randox</span>
+              <span className="cv-entry">Agile Developer Intern @ Randox</span>
             </div>
             <div className="flex gap-6">
               <span className="cv-year">2024</span>
@@ -95,15 +95,15 @@ const About = () => {
           <div className="space-y-3 mb-8">
             <div className="flex gap-6">
               <span className="cv-year">2026</span>
-              <span className="cv-entry">PushPin (Jan 2026 - Feb 2026): AI social-to-map engine built with React, Node.js, Express, Mapbox API, Llama 3/Mistral, and sentence-transformer embeddings</span>
+              <span className="cv-entry">PushPin: AI social-to-map engine built with React, Node.js, Express, Mapbox API, Llama 3/Mistral, and sentence-transformer embeddings</span>
             </div>
             <div className="flex gap-6">
               <span className="cv-year">2025</span>
-              <span className="cv-entry">EcoCAR EV Challenge - Cadillac LYRIQ Systems Integration (Sep 2025 - Dec 2025): Led cabin wiring integration with Siemens NX CAD and ACDelco TDS for OEM-grade routing and cross-team execution</span>
+              <span className="cv-entry">EcoCAR EV Challenge - Cadillac LYRIQ Systems Integration: Led cabin wiring integration with Siemens NX CAD and ACDelco TDS for OEM-grade routing and cross-team execution</span>
             </div>
             <div className="flex gap-6">
               <span className="cv-year">2025</span>
-              <span className="cv-entry">SkillSwap (Jan 2025 - Apr 2025): Full-stack peer-to-peer skill exchange platform built with React, JavaScript, Node.js, Express.js, SQL, and Firebase Authentication</span>
+              <span className="cv-entry">SkillSwap: Full-stack peer-to-peer skill exchange platform built with React, JavaScript, Node.js, Express.js, SQL, and Firebase Authentication</span>
             </div>
           </div>
         </motion.div>
