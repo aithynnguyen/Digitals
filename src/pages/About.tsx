@@ -26,13 +26,13 @@ const About = () => {
             <span className="mono-caption text-xs">Portrait</span>
           </div>
           <div className="flex flex-col justify-center">
-             <p className="text-base md:text-lg leading-relaxed text-foreground mb-5">
-              Hi! I'm Aithy Ngoc Nguyen, a photographer and Management Engineering student at the University of Waterloo. 
+            <p className="text-base md:text-lg leading-relaxed text-foreground mb-5">
+              Hi! I'm Aithy Ngoc Nguyen, a photographer and Management Engineering student at the University of Waterloo.
               I travel with vintage digital cameras and disposable film, capturing the places I go and the people I meet.
             </p>
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground mb-5">
-              My parents restored their old digital cameras and gifted them to me, the same cameras that once captured 
-              my childhood memories. There's something special about shooting with an older camera that I really enjoy. 
+              My parents restored their old digital cameras and gifted them to me, the same cameras that once captured
+              my childhood memories. There's something special about shooting with an older camera that I really enjoy.
               They've already captured so many moments, so why not keep the tradition going? :)
             </p>
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
@@ -66,48 +66,44 @@ const About = () => {
           <div className="cv-section-title">Education</div>
           <div className="space-y-3 mb-8">
             <div className="flex gap-6">
-              <span className="cv-year">2025</span>
+              <span className="cv-year">2022</span>
               <span className="cv-entry">BASc Management Engineering, University of Waterloo, ON, Canada</span>
-            </div>
-            <div className="flex gap-6">
-              <span className="cv-year">2020</span>
-              <span className="cv-entry">High School Diploma, Placeholder High School, ON, Canada</span>
             </div>
           </div>
 
           <div className="cv-section-title">Experience</div>
           <div className="space-y-3 mb-8">
             <div className="flex gap-6">
+              <span className="cv-year">2026</span>
+              <span className="cv-entry">Agile Developer @ Randox</span>
+            </div>
+            <div className="flex gap-6">
               <span className="cv-year">2024</span>
-              <span className="cv-entry">Placeholder Position, Placeholder Company, City, Country</span>
+              <span className="cv-entry">Project Management Intern @ Toronto Transit Commission</span>
+            </div>
+            <div className="flex gap-6">
+              <span className="cv-year">2024</span>
+              <span className="cv-entry">Project and Release Management Intern @ Blackberry QNX</span>
             </div>
             <div className="flex gap-6">
               <span className="cv-year">2023</span>
-              <span className="cv-entry">Placeholder Internship, Placeholder Organization, City, Country</span>
-            </div>
-          </div>
-
-          <div className="cv-section-title">Skills</div>
-          <div className="space-y-3 mb-8">
-            <div className="flex gap-6">
-              <span className="cv-year"></span>
-              <span className="cv-entry">Photography — Digital, Film, Disposable, Portrait, Landscape</span>
-            </div>
-            <div className="flex gap-6">
-              <span className="cv-year"></span>
-              <span className="cv-entry">Software — Placeholder, Placeholder, Placeholder</span>
+              <span className="cv-entry">Systems Management Intern @ Concord Adex</span>
             </div>
           </div>
 
           <div className="cv-section-title">Projects</div>
           <div className="space-y-3 mb-8">
             <div className="flex gap-6">
-              <span className="cv-year">2024</span>
-              <span className="cv-entry">Digitals by Aithy Ngoc Nguyen — Personal photography portfolio and web project</span>
+              <span className="cv-year">2026</span>
+              <span className="cv-entry">PushPin (Jan 2026 - Feb 2026): AI social-to-map engine built with React, Node.js, Express, Mapbox API, Llama 3/Mistral, and sentence-transformer embeddings</span>
             </div>
             <div className="flex gap-6">
-              <span className="cv-year">2023</span>
-              <span className="cv-entry">Placeholder Project, Placeholder Details</span>
+              <span className="cv-year">2025</span>
+              <span className="cv-entry">EcoCAR EV Challenge - Cadillac LYRIQ Systems Integration (Sep 2025 - Dec 2025): Led cabin wiring integration with Siemens NX CAD and ACDelco TDS for OEM-grade routing and cross-team execution</span>
+            </div>
+            <div className="flex gap-6">
+              <span className="cv-year">2025</span>
+              <span className="cv-entry">SkillSwap (Jan 2025 - Apr 2025): Full-stack peer-to-peer skill exchange platform built with React, JavaScript, Node.js, Express.js, SQL, and Firebase Authentication</span>
             </div>
           </div>
         </motion.div>
