@@ -57,12 +57,18 @@ const distanceKm = (a: [number, number], b: [number, number]) => {
 };
 
 const MIN_PIN_SPACING_KM = 180;
+const forcedMapOnlyPinSlugs = new Set(["galway", "thousand-islands"]);
 
 const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
   const accepted: MapOnlyPin[] = [];
   const existingCoords = locations.map((location) => location.coordinates);
 
   pins.forEach((candidate) => {
+    if (forcedMapOnlyPinSlugs.has(candidate.slug)) {
+      accepted.push(candidate);
+      return;
+    }
+
     const tooCloseToExisting = existingCoords.some(
       (coord) => distanceKm(coord, candidate.coordinates) < MIN_PIN_SPACING_KM,
     );
@@ -81,10 +87,7 @@ const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
 
 const WorldMap = ({ onLocationClick }: WorldMapProps) => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
-  const [zoom, setZoom] = useState(1);
   const mapOnlyPins = filterCrowdedMapOnlyPins(mapOnlyRequestedPins);
-
-  const pinScale = Math.max(1, zoom);
 
   return (
     <div className="w-full border border-border bg-secondary/30">
@@ -93,13 +96,7 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
         className="w-full h-auto"
         style={{ maxHeight: "500px" }}
       >
-        <ZoomableGroup
-          onMoveEnd={(position) => {
-            const nextZoom =
-              position && Number.isFinite(position.zoom) ? position.zoom : 1;
-            setZoom(Math.max(1, nextZoom));
-          }}
-        >
+        <ZoomableGroup>
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
               geographies.map((geo) => (
@@ -129,10 +126,7 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               style={{ cursor: "pointer" }}
             >
               <circle
-                r={Math.max(
-                  1.8,
-                  (hoveredSlug === location.slug ? 3.6 : 2.7) / Math.sqrt(pinScale),
-                )}
+                r={hoveredSlug === location.slug ? 3.6 : 2.7}
                 fill="hsl(var(--foreground))"
                 className="transition-all duration-200"
               />
@@ -163,10 +157,7 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               style={{ cursor: "default" }}
             >
               <circle
-                r={Math.max(
-                  1.6,
-                  (hoveredSlug === pin.slug ? 3.4 : 2.5) / Math.sqrt(pinScale),
-                )}
+                r={hoveredSlug === pin.slug ? 3.4 : 2.5}
                 fill="hsl(224 66% 22%)"
                 className="transition-all duration-200"
               />
