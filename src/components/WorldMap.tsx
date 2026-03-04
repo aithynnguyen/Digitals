@@ -23,23 +23,12 @@ type MapOnlyPin = {
 
 const mapOnlyRequestedPins: MapOnlyPin[] = [
   { slug: "ottawa", city: "Ottawa", country: "Canada", coordinates: [-75.6972, 45.4215] },
-  { slug: "blue-mountain-wasaga", city: "Blue Mountain / Wasaga", country: "Canada", coordinates: [-80.3167, 44.5000] },
   { slug: "boston", city: "Boston", country: "USA", coordinates: [-71.0589, 42.3601] },
-  { slug: "philadelphia", city: "Philadelphia", country: "USA", coordinates: [-75.1652, 39.9526] },
-  { slug: "philadelphia-pa", city: "Philadelphia", country: "Pennsylvania", coordinates: [-75.1652, 39.9526] },
-  { slug: "cliffs-of-moher", city: "Cliffs of Moher", country: "Ireland", coordinates: [-9.4309, 52.9715] },
-  { slug: "shawinigan", city: "Shawinigan", country: "Canada", coordinates: [-72.7478, 46.5392] },
+  { slug: "philadelphia-pa", city: "Philadelphia", country: "USA", coordinates: [-75.1652, 39.9526] },
   { slug: "nashville", city: "Nashville", country: "USA", coordinates: [-86.7816, 36.1627] },
   { slug: "gatlinburg", city: "Gatlinburg", country: "USA", coordinates: [-83.5185, 35.7143] },
-  { slug: "san-diego", city: "San Diego", country: "USA", coordinates: [-117.1611, 32.7157] },
   { slug: "galway", city: "Galway", country: "Ireland", coordinates: [-9.0568, 53.2707] },
-  { slug: "thousand-islands", city: "Thousand Islands", country: "Canada", coordinates: [-75.90, 44.33] },
-  { slug: "hoi-an", city: "HỘI AN", country: "Viet Nam", coordinates: [108.3380, 15.8801] },
-  { slug: "niagara-falls", city: "Niagara Falls", country: "Canada", coordinates: [-79.0849, 43.0896] },
   { slug: "da-nang", city: "ĐÀ NẴNG", country: "Viet Nam", coordinates: [108.2208, 16.0544] },
-  { slug: "parc-des-chutes-dorwin", city: "Rawdon Area", country: "Canada", coordinates: [-73.7130, 46.0450] },
-  { slug: "lac-bouchard", city: "Lac Bouchard Area", country: "Canada", coordinates: [-73.2200, 47.0600] },
-  { slug: "parc-national-de-la-mauricie", city: "La Mauricie Area", country: "Canada", coordinates: [-72.9090, 46.8260] },
 ];
 
 const toRad = (deg: number) => (deg * Math.PI) / 180;
@@ -58,16 +47,10 @@ const distanceKm = (a: [number, number], b: [number, number]) => {
 const MIN_PIN_SPACING_KM = 180;
 const forcedMapOnlyPinSlugs = new Set([
   "galway",
-  "thousand-islands",
-  "hoi-an",
   "da-nang",
   "ottawa",
   "philadelphia-pa",
   "gatlinburg",
-  "blue-mountain-wasaga",
-  "shawinigan",
-  "san-diego",
-  "niagara-falls",
 ]);
 
 const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {

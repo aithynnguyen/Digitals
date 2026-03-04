@@ -22,7 +22,7 @@ const cameras: Camera[] = [
   {
     name: "Sony Cyber-Shot DSC-T99",
     category: "Digital",
-    description: "My first real camera - restored and gifted by my parents. A sleek ultra-compact camera that reflects the stylish design era of the late-2000s point-and-shoot photography.",
+    description: "My first  camera - restored and gifted by my parents. A sleek ultra-compact camera that reflects the  design era of the late-2000s point-and-shoot photography.",
     images: [
       { src: "/images/cameras/cam1-front.png", alt: "Sony T99 — Front" },
       { src: "/images/cameras/cam1-back.png", alt: "Sony T99 — Back" },
@@ -32,7 +32,7 @@ const cameras: Camera[] = [
   {
     name: "Disposable Film",
     category: "Film",
-    description: "The charm of single-use film cameras — Fujifilm Quicksnap, Ilford Ilfocolor Rapid, and Kodak Fun Saver. Each roll tells its own story.",
+    description: "The charm of single use film cameras — Fujifilm Quicksnap, Ilford Ilfocolor Rapid and Kodak Fun Saver. A surprise in each roll.",
     images: [
       { src: "/images/cameras/cam3-fujifilm.png", alt: "Fujifilm Quicksnap" },
       { src: "/images/cameras/cam3-ilford.png", alt: "Ilford Ilfocolor Rapid" },
@@ -42,7 +42,7 @@ const cameras: Camera[] = [
   {
     name: "Panasonic Lumix DMC-LZ7",
     category: "Digital",
-    description: "Another gem restored and gifted by my parents — a compact digital camera released in the mid-2000s, built for simplicity, reliability, and everyday photography.",
+    description: "Another gem restored and gifted by my parents — a compact digital camera released in the mid-2000s, built for simplicity, reliability and everyday photography.",
     images: [
       { src: "/images/cameras/cam2-front.png", alt: "Lumix — Front" },
       { src: "/images/cameras/cam2-back.png", alt: "Lumix — Back" },

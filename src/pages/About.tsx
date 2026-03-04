@@ -32,8 +32,7 @@ const About = () => {
             </p>
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground mb-5">
               My parents restored their old digital cameras and gifted them to me, the same cameras that once captured
-              my childhood memories. There's something special about shooting with an older camera that I really enjoy.
-              They've already captured so many moments, so why not keep the tradition going? :)
+              my childhood memories. There's something special about shooting with an older camera that I really enjoy :)
             </p>
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
               This portfolio is where my interest in development and photography come together.
@@ -97,7 +96,7 @@ const About = () => {
               <span className="cv-year">2026</span>
               <div className="cv-entry">
                 <div>PushPin</div>
-                <div>AI social-to-map engine built with React, Node.js, Express, Mapbox API, Llama 3/Mistral, and sentence-transformer embeddings</div>
+                <div>AI social-to-map engine built with React, Node.js, Express, Mapbox API, Llama 3/Mistral and sentence-transformer embeddings</div>
               </div>
             </div>
             <div className="flex items-start gap-6">
@@ -111,7 +110,7 @@ const About = () => {
               <span className="cv-year">2025</span>
               <div className="cv-entry">
                 <div>SkillSwap</div>
-                <div>Full-stack peer-to-peer skill exchange platform built with React, JavaScript, Node.js, Express.js, SQL, and Firebase Authentication</div>
+                <div>Full-stack peer-to-peer skill exchange platform built with React, JavaScript, Node.js, Express.js, SQL and Firebase Authentication</div>
               </div>
             </div>
           </div>
