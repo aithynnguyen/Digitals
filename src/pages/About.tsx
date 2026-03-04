@@ -32,7 +32,10 @@ const About = () => {
             </p>
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground mb-5">
               My parents restored their old digital cameras and gifted them to me, the same cameras that once captured
-              my childhood memories. There's something special about shooting with an older camera that I really enjoy :)
+              my childhood memories.
+            </p>
+            <p className="text-base md:text-lg leading-relaxed text-muted-foreground mb-5">
+              There's something special about shooting with an older camera that I really enjoy :)
             </p>
           </div>
         </motion.div>
