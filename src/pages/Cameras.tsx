@@ -22,7 +22,7 @@ const cameras: Camera[] = [
   {
     name: "Sony Cyber-Shot DSC-T99",
     category: "Digital",
-    description: "My first real camera — restored and gifted by my parents. It's compact, reliable, and captures vivid color. This one's my go-to.",
+    description: "My first real camera - restored and gifted by my parents. A sleek ultra-compact camera that reflects the stylish design era of the late-2000s point-and-shoot photography.",
     images: [
       { src: "/images/cameras/cam1-front.png", alt: "Sony T99 — Front" },
       { src: "/images/cameras/cam1-back.png", alt: "Sony T99 — Back" },
@@ -127,3 +127,4 @@ const Cameras = () => {
 };
 
 export default Cameras;
+
