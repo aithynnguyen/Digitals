@@ -91,8 +91,6 @@ const buildOrderedColumns = (cards: LocationCard[], columnCount: number): Locati
 const Index = () => {
   const cards = toLocationCards();
   const orderedColumns = buildOrderedColumns(cards, 4);
-  const marqueeImages = [...friendsGallery.images, ...friendsGallery.images];
-
   const renderCard = (card: LocationCard, animationIndex: number) => (
     <motion.div
       key={card.slug}
@@ -151,19 +149,35 @@ const Index = () => {
               To creating endless memories.
             </p>
             <div className="overflow-hidden">
-              <div className="flex flex-nowrap gap-3 animate-[friends-marquee_36s_linear_infinite_alternate] will-change-transform group-hover:[animation-play-state:paused]">
-              {marqueeImages.map((img, i) => (
-                <div
-                  key={i}
-                  className="photo-placeholder aspect-square shrink-0 basis-[calc((100%-0.75rem)/2)] sm:basis-[calc((100%-1.5rem)/3)] lg:basis-[calc((100%-3.75rem)/6)] group-hover:scale-[1.02] transition-transform duration-500"
-                >
-                  {img.src ? (
-                    <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
-                  ) : (
-                    <span className="mono-caption text-base md:text-lg">{(i % friendsGallery.images.length) + 1}</span>
-                  )}
+              <div className="flex flex-nowrap animate-[friends-marquee_24s_linear_infinite] will-change-transform group-hover:[animation-play-state:paused]">
+                <div className="flex flex-nowrap gap-3 pr-3 shrink-0">
+                  {friendsGallery.images.map((img, i) => (
+                    <div
+                      key={`friends-a-${i}`}
+                      className="photo-placeholder aspect-square shrink-0 basis-[calc((100%-0.75rem)/2)] sm:basis-[calc((100%-1.5rem)/3)] lg:basis-[calc((100%-3.75rem)/6)] group-hover:scale-[1.02] transition-transform duration-500"
+                    >
+                      {img.src ? (
+                        <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="mono-caption text-base md:text-lg">{i + 1}</span>
+                      )}
+                    </div>
+                  ))}
                 </div>
-              ))}
+                <div className="flex flex-nowrap gap-3 pr-3 shrink-0">
+                  {friendsGallery.images.map((img, i) => (
+                    <div
+                      key={`friends-b-${i}`}
+                      className="photo-placeholder aspect-square shrink-0 basis-[calc((100%-0.75rem)/2)] sm:basis-[calc((100%-1.5rem)/3)] lg:basis-[calc((100%-3.75rem)/6)] group-hover:scale-[1.02] transition-transform duration-500"
+                    >
+                      {img.src ? (
+                        <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="mono-caption text-base md:text-lg">{i + 1}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </Link>
