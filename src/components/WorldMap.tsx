@@ -35,7 +35,6 @@ const mapOnlyRequestedPins: MapOnlyPin[] = [
   { slug: "thousand-islands", city: "Thousand Islands", country: "Canada", coordinates: [-75.90, 44.33] },
   { slug: "hoi-an", city: "HỘI AN", country: "Viet Nam", coordinates: [108.3380, 15.8801] },
   { slug: "niagara-falls", city: "Niagara Falls", country: "Canada", coordinates: [-79.0849, 43.0896] },
-  { slug: "grand-bend", city: "Grand Bend", country: "Canada", coordinates: [-81.7502, 43.3137] },
   { slug: "da-nang", city: "ĐÀ NẴNG", country: "Viet Nam", coordinates: [108.2208, 16.0544] },
   { slug: "parc-des-chutes-dorwin", city: "Rawdon Area", country: "Canada", coordinates: [-73.7130, 46.0450] },
   { slug: "lac-bouchard", city: "Lac Bouchard Area", country: "Canada", coordinates: [-73.2200, 47.0600] },
