@@ -93,17 +93,26 @@ const About = () => {
 
           <div className="cv-section-title">Projects</div>
           <div className="space-y-3 mb-8">
-            <div className="flex gap-6">
+            <div className="flex items-start gap-6">
               <span className="cv-year">2026</span>
-              <span className="cv-entry">PushPin: AI social-to-map engine built with React, Node.js, Express, Mapbox API, Llama 3/Mistral, and sentence-transformer embeddings</span>
+              <div className="cv-entry">
+                <div>PushPin</div>
+                <div>AI social-to-map engine built with React, Node.js, Express, Mapbox API, Llama 3/Mistral, and sentence-transformer embeddings</div>
+              </div>
             </div>
-            <div className="flex gap-6">
+            <div className="flex items-start gap-6">
               <span className="cv-year">2025</span>
-              <span className="cv-entry">EcoCAR EV Challenge - Cadillac LYRIQ Systems Integration: Led cabin wiring integration with Siemens NX CAD and ACDelco TDS for OEM-grade routing and cross-team execution</span>
+              <div className="cv-entry">
+                <div>EcoCAR EV Challenge - Cadillac LYRIQ Systems Integration</div>
+                <div>Led cabin wiring integration with Siemens NX CAD and ACDelco TDS for OEM-grade routing and cross-team execution</div>
+              </div>
             </div>
-            <div className="flex gap-6">
+            <div className="flex items-start gap-6">
               <span className="cv-year">2025</span>
-              <span className="cv-entry">SkillSwap: Full-stack peer-to-peer skill exchange platform built with React, JavaScript, Node.js, Express.js, SQL, and Firebase Authentication</span>
+              <div className="cv-entry">
+                <div>SkillSwap</div>
+                <div>Full-stack peer-to-peer skill exchange platform built with React, JavaScript, Node.js, Express.js, SQL, and Firebase Authentication</div>
+              </div>
             </div>
           </div>
         </motion.div>
