@@ -14,26 +14,24 @@ type LocationCard = {
   country: string;
   imageSrc?: string;
   aspectClass: string;
-  weight: number;
 };
 
-const aspectOverrides: Record<string, AspectPattern> = {
-  berlin: { className: "aspect-[4/3]", weight: 0.75 },
-  dublin: { className: "aspect-[4/3]", weight: 0.75 },
-  "nha-trang": { className: "aspect-[3/4]", weight: 1.33 },
+type CardOrientation = "horizontal" | "vertical";
+
+// Per request: horizontal -> 4:5, vertical -> 5:4.
+const orientationToAspect: Record<CardOrientation, AspectPattern> = {
+  horizontal: { className: "aspect-[4/5]", weight: 1.25 },
+  vertical: { className: "aspect-[5/4]", weight: 0.8 },
 };
 
-// Deliberate mix of vertical + horizontal cards for a more organic feed.
-const aspectPatterns: AspectPattern[] = [
-  { className: "aspect-[4/5]", weight: 1.25 },
-  { className: "aspect-[4/3]", weight: 0.75 },
-  { className: "aspect-[3/4]", weight: 1.33 },
-  { className: "aspect-[5/4]", weight: 0.8 },
-  { className: "aspect-[1/1]", weight: 1.0 },
-  { className: "aspect-[4/5]", weight: 1.25 },
-  { className: "aspect-[4/3]", weight: 0.75 },
-  { className: "aspect-[3/4]", weight: 1.33 },
-];
+const orientationOverrides: Record<string, CardOrientation> = {
+  berlin: "horizontal",
+  dublin: "horizontal",
+  "nha-trang": "vertical",
+  "big-sur": "horizontal",
+  "san-francisco": "horizontal",
+  "santa-monica": "horizontal",
+};
 
 const toLocationCards = (): LocationCard[] => {
   return [...locations]
@@ -43,16 +41,16 @@ const toLocationCards = (): LocationCard[] => {
       return a.city.localeCompare(b.city, "en", { sensitivity: "base" });
     })
     .map((location, i) => {
-    const pattern =
-      aspectOverrides[location.slug] ??
-      aspectPatterns[(i * 3 + location.slug.length) % aspectPatterns.length];
+    const orientation =
+      orientationOverrides[location.slug] ??
+      (location.images[0]?.src ? "horizontal" : i % 2 === 0 ? "horizontal" : "vertical");
+    const pattern = orientationToAspect[orientation];
     return {
       slug: location.slug,
       city: location.city,
       country: location.country,
       imageSrc: location.images[0]?.src,
       aspectClass: pattern.className,
-      weight: pattern.weight,
     };
     });
 };
