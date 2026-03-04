@@ -34,7 +34,6 @@ const mapOnlyRequestedPins: MapOnlyPin[] = [
   { slug: "galway", city: "Galway", country: "Ireland", coordinates: [-9.0568, 53.2707] },
   { slug: "thousand-islands", city: "Thousand Islands", country: "Canada", coordinates: [-75.90, 44.33] },
   { slug: "hoi-an", city: "HỘI AN", country: "Viet Nam", coordinates: [108.3380, 15.8801] },
-  { slug: "hon-tre", city: "HÒN TRE", country: "Viet Nam", coordinates: [109.3605, 12.2330] },
   { slug: "niagara-falls", city: "Niagara Falls", country: "Canada", coordinates: [-79.0849, 43.0896] },
   { slug: "grand-bend", city: "Grand Bend", country: "Canada", coordinates: [-81.7502, 43.3137] },
   { slug: "da-nang", city: "ĐÀ NẴNG", country: "Viet Nam", coordinates: [108.2208, 16.0544] },
@@ -61,7 +60,6 @@ const forcedMapOnlyPinSlugs = new Set([
   "galway",
   "thousand-islands",
   "hoi-an",
-  "hon-tre",
   "da-nang",
 ]);
 
