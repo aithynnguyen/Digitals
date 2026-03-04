@@ -34,9 +34,6 @@ const About = () => {
               My parents restored their old digital cameras and gifted them to me, the same cameras that once captured
               my childhood memories. There's something special about shooting with an older camera that I really enjoy :)
             </p>
-            <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-              This portfolio is where my interest in development and photography come together.
-            </p>
           </div>
         </motion.div>
 
