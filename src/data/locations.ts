@@ -82,9 +82,9 @@ export const locations: LocationData[] = [
     country: "Switzerland",
     coordinates: [6.1432, 46.2044],
     images: [
-      { src: "/images/geneva/placeholder-1.svg", alt: "Geneva 1" },
-      { src: "/images/geneva/placeholder-2.svg", alt: "Geneva 2" },
-      { src: "/images/geneva/placeholder-3.svg", alt: "Geneva 3" },
+      { src: "", alt: "Geneva 1" },
+      { src: "", alt: "Geneva 2" },
+      { src: "", alt: "Geneva 3" },
     ],
   },
   // Ireland
@@ -106,9 +106,9 @@ export const locations: LocationData[] = [
     country: "Albania",
     coordinates: [19.8187, 41.3275],
     images: [
-      { src: "/images/tirana/placeholder-1.svg", alt: "Tirana 1" },
-      { src: "/images/tirana/placeholder-2.svg", alt: "Tirana 2" },
-      { src: "/images/tirana/placeholder-3.svg", alt: "Tirana 3" },
+      { src: "", alt: "Tirana 1" },
+      { src: "", alt: "Tirana 2" },
+      { src: "", alt: "Tirana 3" },
     ],
   },
   // Lithuania
@@ -188,9 +188,9 @@ export const locations: LocationData[] = [
     country: "Romania",
     coordinates: [26.1025, 44.4268],
     images: [
-      { src: "/images/bucharest/placeholder-1.svg", alt: "Bucharest 1" },
-      { src: "/images/bucharest/placeholder-2.svg", alt: "Bucharest 2" },
-      { src: "/images/bucharest/placeholder-3.svg", alt: "Bucharest 3" },
+      { src: "", alt: "Bucharest 1" },
+      { src: "", alt: "Bucharest 2" },
+      { src: "", alt: "Bucharest 3" },
     ],
   },
   // UK
@@ -324,22 +324,22 @@ export const locations: LocationData[] = [
       { src: "/images/santa-monica/DSC02103.jpg", alt: "Santa Monica 12" },
     ],
   },
-  // Vi?t Nam
+  // Viet Nam
   {
     slug: "ho-chi-minh",
-    city: "Hồ Chí Minh",
-    country: "Vi?t Nam",
+    city: "Ho Chi Minh",
+    country: "Viet Nam",
     coordinates: [106.6297, 10.8231],
     images: [
-      { src: "", alt: "Hồ Chí Minh 1" },
-      { src: "", alt: "Hồ Chí Minh 2" },
-      { src: "", alt: "Hồ Chí Minh 3" },
+      { src: "", alt: "Ho Chi Minh 1" },
+      { src: "", alt: "Ho Chi Minh 2" },
+      { src: "", alt: "Ho Chi Minh 3" },
     ],
   },
   {
     slug: "nha-trang",
     city: "Nha Trang",
-    country: "Vi?t Nam",
+    country: "Viet Nam",
     coordinates: [109.1967, 12.2388],
     images: [
       { src: "", alt: "Nha Trang 1" },
@@ -366,6 +366,12 @@ export const getLocationBySlug = (slug: string): LocationData | undefined => {
   return locations.find((l) => l.slug === slug);
 };
 
+locations.sort((a, b) => {
+  const countryCmp = a.country.localeCompare(b.country, "en", { sensitivity: "base" });
+  if (countryCmp !== 0) return countryCmp;
+  return a.city.localeCompare(b.city, "en", { sensitivity: "base" });
+});
+
 locations.forEach((location) => {
   location.images = location.images.map((image) => ({
     ...image,
@@ -377,4 +383,5 @@ friendsGallery.images = friendsGallery.images.map((image) => ({
   ...image,
   src: withPagesBase(image.src),
 }));
+
 
