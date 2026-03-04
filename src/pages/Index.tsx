@@ -149,7 +149,8 @@ const Index = () => {
             <p className="text-sm text-muted-foreground mb-6">
               To creating endless memories.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="overflow-x-auto pb-2">
+              <div className="grid grid-flow-col auto-cols-[calc((100%-0.75rem)/2)] sm:auto-cols-[calc((100%-1.5rem)/3)] lg:auto-cols-[calc((100%-3.75rem)/6)] gap-3 min-w-full">
               {friendsGallery.images.map((img, i) => (
                 <div
                   key={i}
@@ -162,6 +163,7 @@ const Index = () => {
                   )}
                 </div>
               ))}
+              </div>
             </div>
           </Link>
         </motion.div>
