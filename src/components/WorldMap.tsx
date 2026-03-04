@@ -92,7 +92,9 @@ const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
 
 const WorldMap = ({ onLocationClick }: WorldMapProps) => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+  const [zoom, setZoom] = useState(1);
   const mapOnlyPins = filterCrowdedMapOnlyPins(mapOnlyRequestedPins);
+  const pinScale = 1 / Math.max(zoom, 1);
 
   return (
     <div className="w-full border border-border bg-secondary/30">
@@ -101,7 +103,18 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
         className="w-full h-auto"
         style={{ maxHeight: "500px" }}
       >
-        <ZoomableGroup>
+        <ZoomableGroup
+          onMove={(position) => {
+            if (position && Number.isFinite(position.zoom)) {
+              setZoom(position.zoom);
+            }
+          }}
+          onMoveEnd={(position) => {
+            if (position && Number.isFinite(position.zoom)) {
+              setZoom(position.zoom);
+            }
+          }}
+        >
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
               geographies.map((geo) => (
@@ -130,26 +143,28 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               onMouseLeave={() => setHoveredSlug(null)}
               style={{ cursor: "pointer" }}
             >
-              <circle
-                r={hoveredSlug === location.slug ? 3.6 : 2.7}
-                fill="hsl(var(--foreground))"
-                className="transition-all duration-200"
-              />
-              {hoveredSlug === location.slug && (
-                <text
-                  textAnchor="middle"
-                  y={-12}
-                  style={{
-                    fontFamily: "Space Mono, monospace",
-                    fontSize: "8px",
-                    fill: "hsl(var(--foreground))",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {location.city}
-                </text>
-              )}
+              <g transform={`scale(${pinScale})`}>
+                <circle
+                  r={hoveredSlug === location.slug ? 3.6 : 2.7}
+                  fill="hsl(var(--foreground))"
+                  className="transition-all duration-200"
+                />
+                {hoveredSlug === location.slug && (
+                  <text
+                    textAnchor="middle"
+                    y={-12}
+                    style={{
+                      fontFamily: "Space Mono, monospace",
+                      fontSize: "8px",
+                      fill: "hsl(var(--foreground))",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {location.city}
+                  </text>
+                )}
+              </g>
             </Marker>
           ))}
 
@@ -161,26 +176,28 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               onMouseLeave={() => setHoveredSlug(null)}
               style={{ cursor: "default" }}
             >
-              <circle
-                r={hoveredSlug === pin.slug ? 3.4 : 2.5}
-                fill="hsl(224 66% 22%)"
-                className="transition-all duration-200"
-              />
-              {hoveredSlug === pin.slug && (
-                <text
-                  textAnchor="middle"
-                  y={-12}
-                  style={{
-                    fontFamily: "Space Mono, monospace",
-                    fontSize: "8px",
-                    fill: "hsl(var(--foreground))",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {pin.city}
-                </text>
-              )}
+              <g transform={`scale(${pinScale})`}>
+                <circle
+                  r={hoveredSlug === pin.slug ? 3.4 : 2.5}
+                  fill="hsl(224 66% 22%)"
+                  className="transition-all duration-200"
+                />
+                {hoveredSlug === pin.slug && (
+                  <text
+                    textAnchor="middle"
+                    y={-12}
+                    style={{
+                      fontFamily: "Space Mono, monospace",
+                      fontSize: "8px",
+                      fill: "hsl(var(--foreground))",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {pin.city}
+                  </text>
+                )}
+              </g>
             </Marker>
           ))}
         </ZoomableGroup>
