@@ -30,6 +30,7 @@ const mapOnlyRequestedPins: MapOnlyPin[] = [
   { slug: "cliffs-of-moher", city: "Cliffs of Moher", country: "Ireland", coordinates: [-9.4309, 52.9715] },
   { slug: "shawinigan", city: "Shawinigan", country: "Canada", coordinates: [-72.7478, 46.5392] },
   { slug: "nashville", city: "Nashville", country: "USA", coordinates: [-86.7816, 36.1627] },
+  { slug: "gatlinburg", city: "Gatlinburg", country: "USA", coordinates: [-83.5185, 35.7143] },
   { slug: "san-diego", city: "San Diego", country: "USA", coordinates: [-117.1611, 32.7157] },
   { slug: "galway", city: "Galway", country: "Ireland", coordinates: [-9.0568, 53.2707] },
   { slug: "thousand-islands", city: "Thousand Islands", country: "Canada", coordinates: [-75.90, 44.33] },
@@ -62,6 +63,7 @@ const forcedMapOnlyPinSlugs = new Set([
   "da-nang",
   "ottawa",
   "philadelphia-pa",
+  "gatlinburg",
 ]);
 
 const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
