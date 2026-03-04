@@ -30,7 +30,13 @@ const aspectPatterns: AspectPattern[] = [
 ];
 
 const toLocationCards = (): LocationCard[] => {
-  return locations.map((location, i) => {
+  return [...locations]
+    .sort((a, b) => {
+      const countryCmp = a.country.localeCompare(b.country, "en", { sensitivity: "base" });
+      if (countryCmp !== 0) return countryCmp;
+      return a.city.localeCompare(b.city, "en", { sensitivity: "base" });
+    })
+    .map((location, i) => {
     const pattern = aspectPatterns[(i * 3 + location.slug.length) % aspectPatterns.length];
     return {
       slug: location.slug,
@@ -40,31 +46,28 @@ const toLocationCards = (): LocationCard[] => {
       aspectClass: pattern.className,
       weight: pattern.weight,
     };
-  });
+    });
 };
 
-// Greedy column balancing by estimated card height.
-const buildBalancedColumns = (cards: LocationCard[], columnCount: number): LocationCard[][] => {
+// Column-major split so each column reads top-to-bottom in sorted order.
+const buildOrderedColumns = (cards: LocationCard[], columnCount: number): LocationCard[][] => {
   const columns: LocationCard[][] = Array.from({ length: columnCount }, () => []);
-  const columnWeights = Array.from({ length: columnCount }, () => 0);
+  const baseSize = Math.floor(cards.length / columnCount);
+  const remainder = cards.length % columnCount;
 
-  cards.forEach((card) => {
-    let lightestColumnIndex = 0;
-    for (let i = 1; i < columnCount; i++) {
-      if (columnWeights[i] < columnWeights[lightestColumnIndex]) {
-        lightestColumnIndex = i;
-      }
-    }
-    columns[lightestColumnIndex].push(card);
-    columnWeights[lightestColumnIndex] += card.weight;
-  });
+  let cursor = 0;
+  for (let i = 0; i < columnCount; i++) {
+    const thisColumnSize = baseSize + (i < remainder ? 1 : 0);
+    columns[i] = cards.slice(cursor, cursor + thisColumnSize);
+    cursor += thisColumnSize;
+  }
 
   return columns;
 };
 
 const Index = () => {
   const cards = toLocationCards();
-  const balancedColumns = buildBalancedColumns(cards, 4);
+  const orderedColumns = buildOrderedColumns(cards, 4);
 
   const renderCard = (card: LocationCard, animationIndex: number) => (
     <motion.div
@@ -101,7 +104,7 @@ const Index = () => {
 
         {/* Desktop: 4 balanced columns */}
         <div className="hidden xl:grid xl:grid-cols-4 gap-4">
-          {balancedColumns.map((column, colIndex) => (
+          {orderedColumns.map((column, colIndex) => (
             <div key={colIndex} className="space-y-4">
               {column.map((card, rowIndex) => renderCard(card, colIndex + rowIndex))}
             </div>
