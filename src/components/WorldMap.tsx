@@ -31,8 +31,6 @@ const mapOnlyRequestedPins: MapOnlyPin[] = [
   { slug: "shawinigan", city: "Shawinigan", country: "Canada", coordinates: [-72.7478, 46.5392] },
   { slug: "nashville", city: "Nashville", country: "USA", coordinates: [-86.7816, 36.1627] },
   { slug: "san-diego", city: "San Diego", country: "USA", coordinates: [-117.1611, 32.7157] },
-  { slug: "montreal", city: "Montreal", country: "Canada", coordinates: [-73.5673, 45.5017] },
-  { slug: "new-york-city", city: "New York City", country: "USA", coordinates: [-74.0060, 40.7128] },
   { slug: "galway", city: "Galway", country: "Ireland", coordinates: [-9.0568, 53.2707] },
   { slug: "thousand-islands", city: "Thousand Islands", country: "Canada", coordinates: [-75.90, 44.33] },
   { slug: "hoi-an", city: "Hoi An", country: "Viet Nam", coordinates: [108.3380, 15.8801] },

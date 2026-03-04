@@ -39,6 +39,17 @@ export const locations: LocationData[] = [
       { src: "", alt: "Vancouver 3" },
     ],
   },
+  {
+    slug: "montreal",
+    city: "Montreal",
+    country: "Canada",
+    coordinates: [-73.5673, 45.5017],
+    images: [
+      { src: "/images/montreal/placeholder-1.svg", alt: "Montreal 1" },
+      { src: "/images/montreal/placeholder-2.svg", alt: "Montreal 2" },
+      { src: "/images/montreal/placeholder-3.svg", alt: "Montreal 3" },
+    ],
+  },
   // France
   {
     slug: "paris",
@@ -302,6 +313,17 @@ export const locations: LocationData[] = [
       { src: "/images/big-sur/DSC02152.jpg", alt: "San Francisco 14" },
       { src: "/images/big-sur/DSC02068.jpg", alt: "San Francisco 15" },
       { src: "/images/big-sur/DSC02137.jpg", alt: "San Francisco 16" },
+    ],
+  },
+  {
+    slug: "new-york-city",
+    city: "New York City",
+    country: "USA",
+    coordinates: [-74.0060, 40.7128],
+    images: [
+      { src: "/images/new-york-city/placeholder-1.svg", alt: "New York City 1" },
+      { src: "/images/new-york-city/placeholder-2.svg", alt: "New York City 2" },
+      { src: "/images/new-york-city/placeholder-3.svg", alt: "New York City 3" },
     ],
   },
   {
