@@ -34,6 +34,15 @@ const mapOnlyRequestedPins: MapOnlyPin[] = [
   { slug: "montreal", city: "Montreal", country: "Canada", coordinates: [-73.5673, 45.5017] },
   { slug: "new-york-city", city: "New York City", country: "USA", coordinates: [-74.0060, 40.7128] },
   { slug: "galway", city: "Galway", country: "Ireland", coordinates: [-9.0568, 53.2707] },
+  { slug: "thousand-islands", city: "Thousand Islands", country: "Canada", coordinates: [-75.90, 44.33] },
+  { slug: "hoi-an", city: "Hoi An", country: "Viet Nam", coordinates: [108.3380, 15.8801] },
+  { slug: "hon-tre", city: "Hon Tre", country: "Viet Nam", coordinates: [109.3605, 12.2330] },
+  { slug: "niagara-falls", city: "Niagara Falls", country: "Canada", coordinates: [-79.0849, 43.0896] },
+  { slug: "grand-bend", city: "Grand Bend", country: "Canada", coordinates: [-81.7502, 43.3137] },
+  { slug: "da-nang", city: "Da Nang", country: "Viet Nam", coordinates: [108.2208, 16.0544] },
+  { slug: "parc-des-chutes-dorwin", city: "Rawdon Area", country: "Canada", coordinates: [-73.7130, 46.0450] },
+  { slug: "lac-bouchard", city: "Lac Bouchard Area", country: "Canada", coordinates: [-73.2200, 47.0600] },
+  { slug: "parc-national-de-la-mauricie", city: "La Mauricie Area", country: "Canada", coordinates: [-72.9090, 46.8260] },
 ];
 
 const toRad = (deg: number) => (deg * Math.PI) / 180;
@@ -116,7 +125,7 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               style={{ cursor: "pointer" }}
             >
               <circle
-                r={Math.max(1.4, (hoveredSlug === location.slug ? 3.5 : 2.5) / zoom)}
+                r={Math.max(1.8, (hoveredSlug === location.slug ? 3.6 : 2.7) / Math.sqrt(zoom))}
                 fill="hsl(var(--foreground))"
                 className="transition-all duration-200"
               />
@@ -147,8 +156,8 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               style={{ cursor: "default" }}
             >
               <circle
-                r={Math.max(1.2, (hoveredSlug === pin.slug ? 3.2 : 2.2) / zoom)}
-                fill="hsl(207 90% 52%)"
+                r={Math.max(1.6, (hoveredSlug === pin.slug ? 3.4 : 2.5) / Math.sqrt(zoom))}
+                fill="hsl(224 66% 22%)"
                 className="transition-all duration-200"
               />
               {hoveredSlug === pin.slug && (
