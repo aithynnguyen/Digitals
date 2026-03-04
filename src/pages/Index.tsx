@@ -151,7 +151,7 @@ const Index = () => {
               To creating endless memories.
             </p>
             <div className="overflow-hidden">
-              <div className="flex flex-nowrap gap-3 animate-[friends-marquee_28s_linear_infinite] will-change-transform group-hover:[animation-play-state:paused]">
+              <div className="flex flex-nowrap gap-3 animate-[friends-marquee_36s_linear_infinite_alternate] will-change-transform group-hover:[animation-play-state:paused]">
               {marqueeImages.map((img, i) => (
                 <div
                   key={i}
