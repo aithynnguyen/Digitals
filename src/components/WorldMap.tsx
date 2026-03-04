@@ -26,6 +26,7 @@ const mapOnlyRequestedPins: MapOnlyPin[] = [
   { slug: "blue-mountain-wasaga", city: "Blue Mountain / Wasaga", country: "Canada", coordinates: [-80.3167, 44.5000] },
   { slug: "boston", city: "Boston", country: "USA", coordinates: [-71.0589, 42.3601] },
   { slug: "philadelphia", city: "Philadelphia", country: "USA", coordinates: [-75.1652, 39.9526] },
+  { slug: "philadelphia-pa", city: "Philadelphia", country: "Pennsylvania", coordinates: [-75.1652, 39.9526] },
   { slug: "cliffs-of-moher", city: "Cliffs of Moher", country: "Ireland", coordinates: [-9.4309, 52.9715] },
   { slug: "shawinigan", city: "Shawinigan", country: "Canada", coordinates: [-72.7478, 46.5392] },
   { slug: "nashville", city: "Nashville", country: "USA", coordinates: [-86.7816, 36.1627] },
