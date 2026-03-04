@@ -27,7 +27,7 @@ const About = () => {
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-base md:text-lg leading-relaxed text-foreground mb-5">
-              Hi! I'm Aithy Ngoc Nguyen, a photographer and Management Engineering student at the University of Waterloo.
+              Hi! I'm Aithy Ngoc Nguyen, a Management Engineering student at the University of Waterloo.
               I travel with vintage digital cameras and disposable film, capturing the places I go and the people I meet.
             </p>
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground mb-5">

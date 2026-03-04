@@ -324,11 +324,11 @@ export const locations: LocationData[] = [
       { src: "/images/santa-monica/DSC02103.jpg", alt: "Santa Monica 12" },
     ],
   },
-  // Vietnam
+  // Vi?t Nam
   {
     slug: "ho-chi-minh",
     city: "Hồ Chí Minh",
-    country: "Vietnam",
+    country: "Vi?t Nam",
     coordinates: [106.6297, 10.8231],
     images: [
       { src: "", alt: "Hồ Chí Minh 1" },
@@ -339,7 +339,7 @@ export const locations: LocationData[] = [
   {
     slug: "nha-trang",
     city: "Nha Trang",
-    country: "Vietnam",
+    country: "Vi?t Nam",
     coordinates: [109.1967, 12.2388],
     images: [
       { src: "", alt: "Nha Trang 1" },
@@ -377,3 +377,4 @@ friendsGallery.images = friendsGallery.images.map((image) => ({
   ...image,
   src: withPagesBase(image.src),
 }));
+
