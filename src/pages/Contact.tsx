@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 const Contact = () => {
   return (
     <Layout>
-      <div className="p-6 md:p-10 lg:p-12 max-w-2xl">
+      <div className="p-6 md:p-10 lg:p-12 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
