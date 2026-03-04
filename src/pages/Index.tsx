@@ -39,6 +39,11 @@ const countryOrientationOverrides: Record<string, CardOrientation> = {
   Sweden: "vertical",
 };
 
+const aspectClassOverrides: Record<string, string> = {
+  berlin: "aspect-[4/3]",
+  stockholm: "aspect-[3/4]",
+};
+
 const toLocationCards = (): LocationCard[] => {
   return [...locations]
     .sort((a, b) => {
@@ -53,12 +58,13 @@ const toLocationCards = (): LocationCard[] => {
       countryOrientation ??
       (location.images[0]?.src ? "horizontal" : i % 2 === 0 ? "horizontal" : "vertical");
     const pattern = orientationToAspect[orientation];
+    const forcedAspectClass = aspectClassOverrides[location.slug];
     return {
       slug: location.slug,
       city: location.city,
       country: location.country,
       imageSrc: location.images[0]?.src,
-      aspectClass: pattern.className,
+      aspectClass: forcedAspectClass ?? pattern.className,
     };
     });
 };
