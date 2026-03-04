@@ -18,7 +18,9 @@ type LocationCard = {
 };
 
 const aspectOverrides: Record<string, AspectPattern> = {
+  berlin: { className: "aspect-[4/3]", weight: 0.75 },
   dublin: { className: "aspect-[4/3]", weight: 0.75 },
+  "nha-trang": { className: "aspect-[3/4]", weight: 1.33 },
 };
 
 // Deliberate mix of vertical + horizontal cards for a more organic feed.
