@@ -142,7 +142,7 @@ const Index = () => {
           transition={{ duration: 0.5 }}
           className="mt-20 pt-12 border-t border-border"
         >
-          <div className="group">
+          <Link to="/gallery/ode-to-my-friends" className="group">
             <h2 className="font-mono text-lg mb-2 group-hover:text-muted-foreground transition-colors">
               {friendsGallery.title}
             </h2>
@@ -163,7 +163,7 @@ const Index = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </Link>
         </motion.div>
       </div>
     </Layout>
