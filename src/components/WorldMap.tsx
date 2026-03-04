@@ -95,6 +95,13 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
   const [zoom, setZoom] = useState(1);
   const mapOnlyPins = filterCrowdedMapOnlyPins(mapOnlyRequestedPins);
   const pinScale = 1 / Math.max(zoom, 1);
+  const readZoom = (position: unknown): number => {
+    if (!position || typeof position !== "object") return 1;
+    const candidate = position as { zoom?: number; k?: number };
+    if (Number.isFinite(candidate.zoom)) return candidate.zoom as number;
+    if (Number.isFinite(candidate.k)) return candidate.k as number;
+    return 1;
+  };
 
   return (
     <div className="w-full border border-border bg-secondary/30">
@@ -105,14 +112,10 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
       >
         <ZoomableGroup
           onMove={(position) => {
-            if (position && Number.isFinite(position.zoom)) {
-              setZoom(position.zoom);
-            }
+            setZoom(Math.max(1, readZoom(position)));
           }}
           onMoveEnd={(position) => {
-            if (position && Number.isFinite(position.zoom)) {
-              setZoom(position.zoom);
-            }
+            setZoom(Math.max(1, readZoom(position)));
           }}
         >
           <Geographies geography={GEO_URL}>
