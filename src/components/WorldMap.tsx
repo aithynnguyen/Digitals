@@ -60,6 +60,8 @@ const forcedMapOnlyPinSlugs = new Set([
   "thousand-islands",
   "hoi-an",
   "da-nang",
+  "ottawa",
+  "philadelphia-pa",
 ]);
 
 const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
