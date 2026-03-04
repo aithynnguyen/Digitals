@@ -33,6 +33,11 @@ const orientationOverrides: Record<string, CardOrientation> = {
   "santa-monica": "horizontal",
 };
 
+const countryOrientationOverrides: Record<string, CardOrientation> = {
+  Germany: "horizontal",
+  Sweden: "vertical",
+};
+
 const toLocationCards = (): LocationCard[] => {
   return [...locations]
     .sort((a, b) => {
@@ -41,8 +46,10 @@ const toLocationCards = (): LocationCard[] => {
       return a.city.localeCompare(b.city, "en", { sensitivity: "base" });
     })
     .map((location, i) => {
+    const countryOrientation = countryOrientationOverrides[location.country];
     const orientation =
       orientationOverrides[location.slug] ??
+      countryOrientation ??
       (location.images[0]?.src ? "horizontal" : i % 2 === 0 ? "horizontal" : "vertical");
     const pattern = orientationToAspect[orientation];
     return {
