@@ -42,7 +42,7 @@ const cameras: Camera[] = [
   {
     name: "Panasonic Lumix DMC-LZ7",
     category: "Digital",
-    description: "Another gem restored and gifted by my parents — this Panasonic keeps the tradition going, capturing life's everyday moments with ease.",
+    description: "Another gem restored and gifted by my parents — a compact digital camera released in the mid-2000s, built for simplicity, reliability, and everyday photography.",
     images: [
       { src: "/images/cameras/cam2-front.png", alt: "Lumix — Front" },
       { src: "/images/cameras/cam2-back.png", alt: "Lumix — Back" },
