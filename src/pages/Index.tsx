@@ -18,16 +18,17 @@ type LocationCard = {
 
 type CardOrientation = "horizontal" | "vertical";
 
-// Per request: horizontal -> 4:5, vertical -> 5:4.
+// Per request: horizontal -> 3:4, vertical -> 4:3.
 const orientationToAspect: Record<CardOrientation, AspectPattern> = {
-  horizontal: { className: "aspect-[4/5]", weight: 1.25 },
-  vertical: { className: "aspect-[5/4]", weight: 0.8 },
+  horizontal: { className: "aspect-[3/4]", weight: 1.33 },
+  vertical: { className: "aspect-[4/3]", weight: 0.75 },
 };
 
 const orientationOverrides: Record<string, CardOrientation> = {
   berlin: "horizontal",
   dublin: "horizontal",
   "nha-trang": "vertical",
+  stockholm: "vertical",
   "big-sur": "horizontal",
   "san-francisco": "horizontal",
   "santa-monica": "horizontal",
