@@ -42,6 +42,7 @@ const countryOrientationOverrides: Record<string, CardOrientation> = {
 
 const aspectClassOverrides: Record<string, string> = {
   berlin: "aspect-[4/3]",
+  "nha-trang": "aspect-[3/4]",
   stockholm: "aspect-[4/3]",
   geneva: "aspect-[4/3]",
 };
