@@ -96,12 +96,12 @@
 }
 
 @layer components {
-  @keyframes friends-marquee {
+  @keyframes friends-conveyor {
     from {
       transform: translateX(0);
     }
     to {
-      transform: translateX(-50%);
+      transform: translateX(calc(-1 * var(--friends-loop-distance, 0px)));
     }
   }
 

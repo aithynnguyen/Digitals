@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { locations, friendsGallery } from "@/data/locations";
@@ -91,6 +92,27 @@ const buildOrderedColumns = (cards: LocationCard[], columnCount: number): Locati
 const Index = () => {
   const cards = toLocationCards();
   const orderedColumns = buildOrderedColumns(cards, 4);
+  const friendsViewportRef = useRef<HTMLDivElement | null>(null);
+  const [friendsTileSize, setFriendsTileSize] = useState(0);
+  const friendsGap = 12;
+  const friendsCount = friendsGallery.images.length;
+  const friendsLoopDistance = useMemo(
+    () => (friendsTileSize > 0 ? (friendsTileSize + friendsGap) * friendsCount : 0),
+    [friendsTileSize, friendsCount],
+  );
+
+  useEffect(() => {
+    const updateFriendsTileSize = () => {
+      if (!friendsViewportRef.current) return;
+      const width = friendsViewportRef.current.clientWidth;
+      const nextSize = (width - friendsGap * 5) / 6;
+      setFriendsTileSize(Math.max(1, nextSize));
+    };
+
+    updateFriendsTileSize();
+    window.addEventListener("resize", updateFriendsTileSize);
+    return () => window.removeEventListener("resize", updateFriendsTileSize);
+  }, []);
   const renderCard = (card: LocationCard, animationIndex: number) => (
     <motion.div
       key={card.slug}
@@ -148,36 +170,34 @@ const Index = () => {
             <p className="text-sm text-muted-foreground mb-6">
               To creating endless memories.
             </p>
-            <div className="overflow-hidden">
-              <div className="flex flex-nowrap animate-[friends-marquee_24s_linear_infinite] will-change-transform group-hover:[animation-play-state:paused]">
-                <div className="flex flex-nowrap gap-3 pr-3 shrink-0">
-                  {friendsGallery.images.map((img, i) => (
-                    <div
-                      key={`friends-a-${i}`}
-                      className="photo-placeholder aspect-square shrink-0 basis-[calc((100%-0.75rem)/2)] sm:basis-[calc((100%-1.5rem)/3)] lg:basis-[calc((100%-3.75rem)/6)] group-hover:scale-[1.02] transition-transform duration-500"
-                    >
-                      {img.src ? (
-                        <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
-                      ) : (
-                        <span className="mono-caption text-base md:text-lg">{i + 1}</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <div className="flex flex-nowrap gap-3 pr-3 shrink-0">
-                  {friendsGallery.images.map((img, i) => (
-                    <div
-                      key={`friends-b-${i}`}
-                      className="photo-placeholder aspect-square shrink-0 basis-[calc((100%-0.75rem)/2)] sm:basis-[calc((100%-1.5rem)/3)] lg:basis-[calc((100%-3.75rem)/6)] group-hover:scale-[1.02] transition-transform duration-500"
-                    >
-                      {img.src ? (
-                        <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
-                      ) : (
-                        <span className="mono-caption text-base md:text-lg">{i + 1}</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
+            <div ref={friendsViewportRef} className="overflow-hidden">
+              <div
+                className="flex flex-nowrap will-change-transform animate-[friends-conveyor_22s_linear_infinite] group-hover:[animation-play-state:paused]"
+                style={
+                  {
+                    ["--friends-loop-distance" as string]: `${friendsLoopDistance}px`,
+                  } as CSSProperties
+                }
+              >
+                {[...friendsGallery.images, ...friendsGallery.images].map((img, i) => (
+                  <div
+                    key={`friends-${i}`}
+                    className="photo-placeholder shrink-0 group-hover:scale-[1.02] transition-transform duration-500"
+                    style={{
+                      width: `${friendsTileSize}px`,
+                      height: `${friendsTileSize}px`,
+                      marginRight: `${friendsGap}px`,
+                    }}
+                  >
+                    {img.src ? (
+                      <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="mono-caption text-base md:text-lg">
+                        {(i % friendsCount) + 1}
+                      </span>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </Link>
