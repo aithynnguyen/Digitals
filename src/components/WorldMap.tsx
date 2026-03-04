@@ -64,6 +64,10 @@ const forcedMapOnlyPinSlugs = new Set([
   "ottawa",
   "philadelphia-pa",
   "gatlinburg",
+  "blue-mountain-wasaga",
+  "shawinigan",
+  "san-diego",
+  "niagara-falls",
 ]);
 
 const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
