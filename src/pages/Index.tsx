@@ -28,7 +28,8 @@ const orientationOverrides: Record<string, CardOrientation> = {
   berlin: "horizontal",
   dublin: "horizontal",
   "nha-trang": "vertical",
-  stockholm: "vertical",
+  stockholm: "horizontal",
+  geneva: "horizontal",
   "big-sur": "horizontal",
   "san-francisco": "horizontal",
   "santa-monica": "horizontal",
@@ -36,12 +37,13 @@ const orientationOverrides: Record<string, CardOrientation> = {
 
 const countryOrientationOverrides: Record<string, CardOrientation> = {
   Germany: "horizontal",
-  Sweden: "vertical",
+  Sweden: "horizontal",
 };
 
 const aspectClassOverrides: Record<string, string> = {
   berlin: "aspect-[4/3]",
-  stockholm: "aspect-[3/4]",
+  stockholm: "aspect-[4/3]",
+  geneva: "aspect-[4/3]",
 };
 
 const toLocationCards = (): LocationCard[] => {
