@@ -172,7 +172,7 @@ const Index = () => {
             </p>
             <div ref={friendsViewportRef} className="overflow-hidden">
               <div
-                className="flex flex-nowrap will-change-transform animate-[friends-conveyor_22s_linear_infinite] group-hover:[animation-play-state:paused]"
+                className="flex flex-nowrap will-change-transform animate-[friends-conveyor_30s_linear_infinite] group-hover:[animation-play-state:paused]"
                 style={
                   {
                     ["--friends-loop-distance" as string]: `${friendsLoopDistance}px`,
