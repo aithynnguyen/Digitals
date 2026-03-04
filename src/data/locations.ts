@@ -75,6 +75,18 @@ export const locations: LocationData[] = [
       { src: "", alt: "Athens 3" },
     ],
   },
+  // Switzerland
+  {
+    slug: "geneva",
+    city: "Geneva",
+    country: "Switzerland",
+    coordinates: [6.1432, 46.2044],
+    images: [
+      { src: "/images/geneva/placeholder-1.svg", alt: "Geneva 1" },
+      { src: "/images/geneva/placeholder-2.svg", alt: "Geneva 2" },
+      { src: "/images/geneva/placeholder-3.svg", alt: "Geneva 3" },
+    ],
+  },
   // Ireland
   {
     slug: "dublin",
@@ -85,6 +97,18 @@ export const locations: LocationData[] = [
       { src: "", alt: "Dublin 1" },
       { src: "", alt: "Dublin 2" },
       { src: "", alt: "Dublin 3" },
+    ],
+  },
+  // Albania
+  {
+    slug: "tirana",
+    city: "Tirana",
+    country: "Albania",
+    coordinates: [19.8187, 41.3275],
+    images: [
+      { src: "/images/tirana/placeholder-1.svg", alt: "Tirana 1" },
+      { src: "/images/tirana/placeholder-2.svg", alt: "Tirana 2" },
+      { src: "/images/tirana/placeholder-3.svg", alt: "Tirana 3" },
     ],
   },
   // Lithuania
@@ -155,6 +179,18 @@ export const locations: LocationData[] = [
       { src: "", alt: "Stockholm 1" },
       { src: "", alt: "Stockholm 2" },
       { src: "", alt: "Stockholm 3" },
+    ],
+  },
+  // Romania
+  {
+    slug: "bucharest",
+    city: "Bucharest",
+    country: "Romania",
+    coordinates: [26.1025, 44.4268],
+    images: [
+      { src: "/images/bucharest/placeholder-1.svg", alt: "Bucharest 1" },
+      { src: "/images/bucharest/placeholder-2.svg", alt: "Bucharest 2" },
+      { src: "/images/bucharest/placeholder-3.svg", alt: "Bucharest 3" },
     ],
   },
   // UK
