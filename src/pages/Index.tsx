@@ -14,38 +14,11 @@ type LocationCard = {
   city: string;
   country: string;
   imageSrc?: string;
-  aspectClass: string;
 };
 
-type CardOrientation = "horizontal" | "vertical";
-
-// Per request: horizontal -> 3:4, vertical -> 4:3.
-const orientationToAspect: Record<CardOrientation, AspectPattern> = {
-  horizontal: { className: "aspect-[3/4]", weight: 1.33 },
-  vertical: { className: "aspect-[4/3]", weight: 0.75 },
-};
-
-const orientationOverrides: Record<string, CardOrientation> = {
-  berlin: "horizontal",
-  dublin: "horizontal",
-  "nha-trang": "vertical",
-  stockholm: "horizontal",
-  geneva: "horizontal",
-  "big-sur": "horizontal",
-  "san-francisco": "horizontal",
-  "santa-monica": "horizontal",
-};
-
-const countryOrientationOverrides: Record<string, CardOrientation> = {
-  Germany: "horizontal",
-  Sweden: "horizontal",
-};
-
-const aspectClassOverrides: Record<string, string> = {
-  berlin: "aspect-[4/3]",
-  "nha-trang": "aspect-[3/4]",
-  stockholm: "aspect-[4/3]",
-  geneva: "aspect-[4/3]",
+const aspectByParity: Record<"vertical" | "horizontal", AspectPattern> = {
+  vertical: { className: "aspect-[3/4]", weight: 1 },
+  horizontal: { className: "aspect-[4/3]", weight: 1 },
 };
 
 const toLocationCards = (): LocationCard[] => {
@@ -55,22 +28,14 @@ const toLocationCards = (): LocationCard[] => {
       if (countryCmp !== 0) return countryCmp;
       return a.city.localeCompare(b.city, "en", { sensitivity: "base" });
     })
-    .map((location, i) => {
-    const countryOrientation = countryOrientationOverrides[location.country];
-    const orientation =
-      orientationOverrides[location.slug] ??
-      countryOrientation ??
-      (location.images[0]?.src ? "horizontal" : i % 2 === 0 ? "horizontal" : "vertical");
-    const pattern = orientationToAspect[orientation];
-    const forcedAspectClass = aspectClassOverrides[location.slug];
-    return {
+    .map((location) => {
+      return {
       slug: location.slug,
       city: location.city,
       country: location.country,
       imageSrc: location.images[0]?.src,
-      aspectClass: forcedAspectClass ?? pattern.className,
     };
-    });
+  });
 };
 
 // Column-major split so each column reads top-to-bottom in sorted order.
@@ -113,7 +78,13 @@ const Index = () => {
     window.addEventListener("resize", updateFriendsTileSize);
     return () => window.removeEventListener("resize", updateFriendsTileSize);
   }, []);
-  const renderCard = (card: LocationCard, animationIndex: number) => (
+
+  const getAspectClass = (columnIndex: number, rowIndex: number): string => {
+    const shouldBeVertical = (columnIndex + rowIndex) % 2 === 0;
+    return shouldBeVertical ? aspectByParity.vertical.className : aspectByParity.horizontal.className;
+  };
+
+  const renderCard = (card: LocationCard, animationIndex: number, columnIndex: number, rowIndex: number) => (
     <motion.div
       key={card.slug}
       initial={{ opacity: 0, y: 20 }}
@@ -123,7 +94,7 @@ const Index = () => {
     >
       <Link to={`/gallery/${card.slug}`} className="group block relative overflow-hidden">
         <div
-          className={`photo-placeholder ${card.aspectClass} group-hover:scale-[1.03] transition-transform duration-700`}
+          className={`photo-placeholder ${getAspectClass(columnIndex, rowIndex)} group-hover:scale-[1.03] transition-transform duration-700`}
         >
           {card.imageSrc ? (
             <img src={card.imageSrc} alt={card.city} className="w-full h-full object-cover" />
@@ -143,14 +114,14 @@ const Index = () => {
       <div className="p-4 md:p-8 lg:p-12">
         {/* Mobile/tablet feed */}
         <div className="xl:hidden columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-          {cards.map((card, i) => renderCard(card, i))}
+          {cards.map((card, i) => renderCard(card, i, i % 2, i))}
         </div>
 
         {/* Desktop: 4 balanced columns */}
         <div className="hidden xl:grid xl:grid-cols-4 gap-4">
           {orderedColumns.map((column, colIndex) => (
             <div key={colIndex} className="space-y-4">
-              {column.map((card, rowIndex) => renderCard(card, colIndex + rowIndex))}
+              {column.map((card, rowIndex) => renderCard(card, colIndex + rowIndex, colIndex, rowIndex))}
             </div>
           ))}
         </div>
