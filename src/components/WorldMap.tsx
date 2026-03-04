@@ -84,6 +84,8 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
   const [zoom, setZoom] = useState(1);
   const mapOnlyPins = filterCrowdedMapOnlyPins(mapOnlyRequestedPins);
 
+  const pinScale = Math.max(1, zoom);
+
   return (
     <div className="w-full border border-border bg-secondary/30">
       <ComposableMap
@@ -92,7 +94,11 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
         style={{ maxHeight: "500px" }}
       >
         <ZoomableGroup
-          onMoveEnd={(position) => setZoom(position.zoom)}
+          onMoveEnd={(position) => {
+            const nextZoom =
+              position && Number.isFinite(position.zoom) ? position.zoom : 1;
+            setZoom(Math.max(1, nextZoom));
+          }}
         >
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
@@ -123,7 +129,10 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               style={{ cursor: "pointer" }}
             >
               <circle
-                r={Math.max(1.8, (hoveredSlug === location.slug ? 3.6 : 2.7) / Math.sqrt(zoom))}
+                r={Math.max(
+                  1.8,
+                  (hoveredSlug === location.slug ? 3.6 : 2.7) / Math.sqrt(pinScale),
+                )}
                 fill="hsl(var(--foreground))"
                 className="transition-all duration-200"
               />
@@ -154,7 +163,10 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               style={{ cursor: "default" }}
             >
               <circle
-                r={Math.max(1.6, (hoveredSlug === pin.slug ? 3.4 : 2.5) / Math.sqrt(zoom))}
+                r={Math.max(
+                  1.6,
+                  (hoveredSlug === pin.slug ? 3.4 : 2.5) / Math.sqrt(pinScale),
+                )}
                 fill="hsl(224 66% 22%)"
                 className="transition-all duration-200"
               />
