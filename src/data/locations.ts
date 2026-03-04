@@ -197,7 +197,7 @@ export const locations: LocationData[] = [
   {
     slug: "belfast",
     city: "Belfast",
-    country: "UK",
+    country: "Northern Ireland",
     coordinates: [-5.9301, 54.5973],
     images: [
       { src: "", alt: "Belfast 1" },
@@ -208,7 +208,7 @@ export const locations: LocationData[] = [
   {
     slug: "glasgow",
     city: "Glasgow",
-    country: "UK",
+    country: "Scotland",
     coordinates: [-4.2518, 55.8642],
     images: [
       { src: "", alt: "Glasgow 1" },
@@ -219,7 +219,7 @@ export const locations: LocationData[] = [
   {
     slug: "london",
     city: "London",
-    country: "UK",
+    country: "England",
     coordinates: [-0.1276, 51.5074],
     images: [
       { src: "", alt: "London 1" },
@@ -327,8 +327,8 @@ export const locations: LocationData[] = [
   // Viet Nam
   {
     slug: "ho-chi-minh",
-    city: "Ho Chi Minh",
-    country: "Viet Nam",
+    city: "Hồ Chí Minh",
+    country: "ViỆt Nam",
     coordinates: [106.6297, 10.8231],
     images: [
       { src: "", alt: "Ho Chi Minh 1" },
@@ -339,7 +339,7 @@ export const locations: LocationData[] = [
   {
     slug: "nha-trang",
     city: "Nha Trang",
-    country: "Viet Nam",
+    country: "ViỆt Nam",
     coordinates: [109.1967, 12.2388],
     images: [
       { src: "", alt: "Nha Trang 1" },
