@@ -96,6 +96,15 @@
 }
 
 @layer components {
+  @keyframes friends-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50% - 0.375rem));
+    }
+  }
+
   .sidebar-nav-link {
     font-family: var(--font-mono);
     @apply text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer block py-1;

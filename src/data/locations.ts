@@ -381,6 +381,10 @@ export const friendsGallery = {
     { src: "", alt: "Friends 4" },
     { src: "", alt: "Friends 5" },
     { src: "", alt: "Friends 6" },
+    { src: "", alt: "Friends 7" },
+    { src: "", alt: "Friends 8" },
+    { src: "", alt: "Friends 9" },
+    { src: "", alt: "Friends 10" },
   ],
 };
 

@@ -91,6 +91,7 @@ const buildOrderedColumns = (cards: LocationCard[], columnCount: number): Locati
 const Index = () => {
   const cards = toLocationCards();
   const orderedColumns = buildOrderedColumns(cards, 4);
+  const marqueeImages = [...friendsGallery.images, ...friendsGallery.images];
 
   const renderCard = (card: LocationCard, animationIndex: number) => (
     <motion.div
@@ -149,17 +150,17 @@ const Index = () => {
             <p className="text-sm text-muted-foreground mb-6">
               To creating endless memories.
             </p>
-            <div className="overflow-x-auto pb-2">
-              <div className="grid grid-flow-col auto-cols-[calc((100%-0.75rem)/2)] sm:auto-cols-[calc((100%-1.5rem)/3)] lg:auto-cols-[calc((100%-3.75rem)/6)] gap-3 min-w-full">
-              {friendsGallery.images.map((img, i) => (
+            <div className="overflow-hidden">
+              <div className="flex flex-nowrap gap-3 animate-[friends-marquee_28s_linear_infinite] will-change-transform group-hover:[animation-play-state:paused]">
+              {marqueeImages.map((img, i) => (
                 <div
                   key={i}
-                  className="photo-placeholder aspect-square group-hover:scale-[1.02] transition-transform duration-500"
+                  className="photo-placeholder aspect-square shrink-0 basis-[calc((100%-0.75rem)/2)] sm:basis-[calc((100%-1.5rem)/3)] lg:basis-[calc((100%-3.75rem)/6)] group-hover:scale-[1.02] transition-transform duration-500"
                 >
                   {img.src ? (
                     <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
                   ) : (
-                    <span className="mono-caption text-[9px]">Photo</span>
+                    <span className="mono-caption text-base md:text-lg">{(i % friendsGallery.images.length) + 1}</span>
                   )}
                 </div>
               ))}
