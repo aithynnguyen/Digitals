@@ -17,6 +17,10 @@ type LocationCard = {
   weight: number;
 };
 
+const aspectOverrides: Record<string, AspectPattern> = {
+  dublin: { className: "aspect-[4/3]", weight: 0.75 },
+};
+
 // Deliberate mix of vertical + horizontal cards for a more organic feed.
 const aspectPatterns: AspectPattern[] = [
   { className: "aspect-[4/5]", weight: 1.25 },
@@ -37,7 +41,9 @@ const toLocationCards = (): LocationCard[] => {
       return a.city.localeCompare(b.city, "en", { sensitivity: "base" });
     })
     .map((location, i) => {
-    const pattern = aspectPatterns[(i * 3 + location.slug.length) % aspectPatterns.length];
+    const pattern =
+      aspectOverrides[location.slug] ??
+      aspectPatterns[(i * 3 + location.slug.length) % aspectPatterns.length];
     return {
       slug: location.slug,
       city: location.city,
