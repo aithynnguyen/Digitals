@@ -34,7 +34,7 @@ const cameras: Camera[] = [
     category: "Film",
     description: "The charm of single use film cameras — Fujifilm Quicksnap, Ilford Ilfocolor Rapid and Kodak Fun Saver. A surprise in each roll.",
     images: [
-      { src: "/images/cameras/cam3-fujifilm.png", alt: "Fujifilm Quicksnap" },
+      { src: "/images/cameras/cam3-fujifilm-v2.png", alt: "Fujifilm Quicksnap" },
       { src: "/images/cameras/cam3-ilford.png", alt: "Ilford Ilfocolor Rapid" },
       { src: "/images/cameras/cam3-kodak.png", alt: "Kodak Fun Saver" },
     ],
