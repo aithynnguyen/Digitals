@@ -51,7 +51,7 @@ const GalleryPage = () => {
   const location = isFriends ? null : getLocationBySlug(slug || "");
 
   const galleryTitle = isFriends ? friendsGallery.title : location?.city;
-  const gallerySubtitle = isFriends ? "The people who make everywhere feel like home" : location?.country;
+  const gallerySubtitle = isFriends ? "To creating endless memories" : location?.country;
   const galleryImages = isFriends ? friendsGallery.images : location?.images;
 
   if (!galleryImages) {
