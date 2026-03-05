@@ -22,8 +22,12 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10 md:gap-16 mb-20"
         >
-          <div className="photo-placeholder aspect-[3/4]">
-            <span className="mono-caption text-xs">Portrait</span>
+          <div className="aspect-[3/4] overflow-hidden bg-muted">
+            <img
+              src={`${import.meta.env.BASE_URL}images/about/about.jpg`}
+              alt="Portrait of Aithy Ngoc Nguyen"
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-base md:text-lg leading-relaxed text-foreground mb-5">

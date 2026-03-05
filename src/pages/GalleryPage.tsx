@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, type SyntheticEvent } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
@@ -8,6 +8,7 @@ import { getLocationBySlug, friendsGallery } from "@/data/locations";
 
 const LazyImage = ({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) => {
   const [inView, setInView] = useState(false);
+  const [aspectClass, setAspectClass] = useState("aspect-square");
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,10 +22,34 @@ const LazyImage = ({ src, alt, onClick }: { src: string; alt: string; onClick: (
     return () => observer.disconnect();
   }, []);
 
+  const handleImageLoad = useCallback((event: SyntheticEvent<HTMLImageElement>) => {
+    const img = event.currentTarget;
+    const w = img.naturalWidth || 0;
+    const h = img.naturalHeight || 0;
+    if (!w || !h) {
+      setAspectClass("aspect-square");
+      return;
+    }
+
+    // Requested gallery rule:
+    // - horizontal image -> 4:3 container
+    // - vertical image -> 3:4 container
+    // - near-square -> square
+    if (w > h * 1.05) {
+      setAspectClass("aspect-[4/3]");
+      return;
+    }
+    if (h > w * 1.05) {
+      setAspectClass("aspect-[3/4]");
+      return;
+    }
+    setAspectClass("aspect-square");
+  }, []);
+
   return (
     <div
       ref={ref}
-      className="overflow-hidden hover:scale-[1.02] transition-transform duration-500 cursor-pointer"
+      className={`${aspectClass} overflow-hidden hover:scale-[1.02] transition-transform duration-500 cursor-pointer`}
       onClick={onClick}
     >
       {inView ? (
@@ -33,10 +58,11 @@ const LazyImage = ({ src, alt, onClick }: { src: string; alt: string; onClick: (
           alt={alt}
           loading="lazy"
           decoding="async"
-          className="w-full h-auto object-cover"
+          onLoad={handleImageLoad}
+          className="w-full h-full object-cover"
         />
       ) : (
-        <div className="w-full aspect-[4/3]" />
+        <div className="w-full h-full" />
       )}
     </div>
   );
