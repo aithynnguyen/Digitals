@@ -14,7 +14,7 @@ const About = () => {
 
   return (
     <Layout>
-      <div className="p-6 md:p-10 lg:p-12 max-w-5xl mx-auto">
+      <div className="p-6 pt-12 md:p-10 md:pt-16 lg:p-12 lg:pt-20 max-w-5xl mx-auto">
         {/* Bio section */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -22,11 +22,11 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10 md:gap-16 mb-20"
         >
-          <div className="aspect-[3/4] overflow-hidden bg-muted">
+          <div className="aspect-square overflow-hidden bg-muted">
             <img
               src={`${import.meta.env.BASE_URL}images/about/about.jpg`}
               alt="Portrait of Aithy Ngoc Nguyen"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-bottom"
             />
           </div>
           <div className="flex flex-col justify-center">

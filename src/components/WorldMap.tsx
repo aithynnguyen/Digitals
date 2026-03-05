@@ -236,6 +236,9 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
                       fill: "hsl(var(--foreground))",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
+                      userSelect: "none",
+                      WebkitUserSelect: "none",
+                      pointerEvents: "none",
                     }}
                   >
                     {location.city}
@@ -269,6 +272,9 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
                       fill: "hsl(var(--foreground))",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
+                      userSelect: "none",
+                      WebkitUserSelect: "none",
+                      pointerEvents: "none",
                     }}
                   >
                     {pin.city}
