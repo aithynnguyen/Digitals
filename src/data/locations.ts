@@ -1,3 +1,5 @@
+import { driveCityImageOverrides } from "./drive-images.generated";
+
 export interface LocationData {
   slug: string;
   city: string;
@@ -398,6 +400,14 @@ locations.sort((a, b) => {
 });
 
 locations.forEach((location) => {
+  const driveOverride = driveCityImageOverrides[location.slug];
+  if (driveOverride?.length) {
+    location.images = driveOverride.map((image, index) => ({
+      src: image.src,
+      alt: image.alt || `${location.city} ${index + 1}`,
+    }));
+  }
+
   location.images = location.images.map((image) => ({
     ...image,
     src: withPagesBase(image.src),

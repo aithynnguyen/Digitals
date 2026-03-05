@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Minus, Plus } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -27,6 +28,7 @@ const mapOnlyRequestedPins: MapOnlyPin[] = [
   { slug: "philadelphia-pa", city: "Philadelphia", country: "USA", coordinates: [-75.1652, 39.9526] },
   { slug: "nashville", city: "Nashville", country: "USA", coordinates: [-86.7816, 36.1627] },
   { slug: "gatlinburg", city: "Gatlinburg", country: "USA", coordinates: [-83.5185, 35.7143] },
+  { slug: "kaunas", city: "Kaunas", country: "Lithuania", coordinates: [23.8813, 54.8985] },
   { slug: "galway", city: "Galway", country: "Ireland", coordinates: [-9.0568, 53.2707] },
   { slug: "da-nang", city: "ĐÀ NẴNG", country: "Viet Nam", coordinates: [108.2208, 16.0544] },
 ];
@@ -45,12 +47,15 @@ const distanceKm = (a: [number, number], b: [number, number]) => {
 };
 
 const MIN_PIN_SPACING_KM = 180;
+const INITIAL_CENTER: [number, number] = [8, 6];
+const INITIAL_ZOOM = 1.35;
 const forcedMapOnlyPinSlugs = new Set([
   "galway",
   "da-nang",
   "ottawa",
   "philadelphia-pa",
   "gatlinburg",
+  "kaunas",
 ]);
 
 const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
@@ -80,10 +85,13 @@ const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
 };
 
 const WorldMap = ({ onLocationClick }: WorldMapProps) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
-  const [zoom, setZoom] = useState(1);
+  const [zoom, setZoom] = useState(INITIAL_ZOOM);
   const mapOnlyPins = filterCrowdedMapOnlyPins(mapOnlyRequestedPins);
-  const pinScale = 1 / Math.max(zoom, 1);
+  const labelFontSize = "8px";
+  const labelOffsetY = -12;
+  const markerScaleCompensation = Math.sqrt(Math.max(zoom, 1));
   const readZoom = (position: unknown): number => {
     if (!position || typeof position !== "object") return 1;
     const candidate = position as { zoom?: number; k?: number };
@@ -91,20 +99,75 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
     if (Number.isFinite(candidate.k)) return candidate.k as number;
     return 1;
   };
+  const clampZoom = (value: number) => Math.min(8, Math.max(INITIAL_ZOOM, value));
+  const zoomBy = (delta: number) => {
+    setZoom((current) => clampZoom(current + delta));
+  };
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const onWheel = (event: WheelEvent) => {
+      if (!event.ctrlKey) return;
+      event.preventDefault();
+      zoomBy(event.deltaY < 0 ? 0.5 : -0.5);
+    };
+
+    const onGesture = (event: Event) => {
+      event.preventDefault();
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("gesturestart", onGesture, { passive: false });
+    el.addEventListener("gesturechange", onGesture, { passive: false });
+
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("gesturestart", onGesture);
+      el.removeEventListener("gesturechange", onGesture);
+    };
+  }, []);
 
   return (
-    <div className="w-full border border-border bg-secondary/30">
+    <div
+      ref={containerRef}
+      className="relative w-full border border-border bg-secondary/30"
+    >
+      <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
+        <button
+          type="button"
+          aria-label="Zoom in map"
+          onClick={() => zoomBy(0.6)}
+          className="inline-flex h-8 w-8 items-center justify-center rounded border border-border bg-background/95 text-foreground shadow-sm transition-colors hover:bg-accent"
+        >
+          <Plus size={14} />
+        </button>
+        <button
+          type="button"
+          aria-label="Zoom out map"
+          onClick={() => zoomBy(-0.6)}
+          className="inline-flex h-8 w-8 items-center justify-center rounded border border-border bg-background/95 text-foreground shadow-sm transition-colors hover:bg-accent"
+        >
+          <Minus size={14} />
+        </button>
+      </div>
       <ComposableMap
-        projectionConfig={{ scale: 140, center: [0, 20] }}
+        projectionConfig={{ scale: 140, center: INITIAL_CENTER }}
         className="w-full h-auto"
         style={{ maxHeight: "500px" }}
       >
         <ZoomableGroup
+          center={INITIAL_CENTER}
+          zoom={zoom}
+          minZoom={INITIAL_ZOOM}
+          maxZoom={8}
+          disablePanning
           onMove={(position) => {
-            setZoom(Math.max(1, readZoom(position)));
+            setZoom(clampZoom(readZoom(position)));
           }}
           onMoveEnd={(position) => {
-            setZoom(Math.max(1, readZoom(position)));
+            setZoom(clampZoom(readZoom(position)));
           }}
         >
           <Geographies geography={GEO_URL}>
@@ -126,7 +189,7 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
             }
           </Geographies>
 
-          {locations.map((location) => (
+          {locations.filter((location) => location.slug !== "kaunas").map((location) => (
             <Marker
               key={location.slug}
               coordinates={location.coordinates}
@@ -135,19 +198,19 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               onMouseLeave={() => setHoveredSlug(null)}
               style={{ cursor: "pointer" }}
             >
-              <g transform={`scale(${pinScale})`}>
+              <g>
                 <circle
-                  r={hoveredSlug === location.slug ? 3.6 : 2.7}
+                  r={(hoveredSlug === location.slug ? 3.6 : 2.7) / markerScaleCompensation}
                   fill="hsl(var(--foreground))"
                   className="transition-all duration-200"
                 />
                 {hoveredSlug === location.slug && (
                   <text
                     textAnchor="middle"
-                    y={-12}
+                    y={labelOffsetY}
                     style={{
                       fontFamily: "Space Mono, monospace",
-                      fontSize: "8px",
+                      fontSize: labelFontSize,
                       fill: "hsl(var(--foreground))",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -168,19 +231,19 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
               onMouseLeave={() => setHoveredSlug(null)}
               style={{ cursor: "default" }}
             >
-              <g transform={`scale(${pinScale})`}>
+              <g>
                 <circle
-                  r={hoveredSlug === pin.slug ? 3.4 : 2.5}
+                  r={(hoveredSlug === pin.slug ? 3.4 : 2.5) / markerScaleCompensation}
                   fill="hsl(224 66% 22%)"
                   className="transition-all duration-200"
                 />
                 {hoveredSlug === pin.slug && (
                   <text
                     textAnchor="middle"
-                    y={-12}
+                    y={labelOffsetY}
                     style={{
                       fontFamily: "Space Mono, monospace",
-                      fontSize: "8px",
+                      fontSize: labelFontSize,
                       fill: "hsl(var(--foreground))",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",

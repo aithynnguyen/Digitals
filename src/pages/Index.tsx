@@ -23,6 +23,7 @@ const aspectByParity: Record<"vertical" | "horizontal", AspectPattern> = {
 
 const toLocationCards = (): LocationCard[] => {
   return [...locations]
+    .filter((location) => location.slug !== "kaunas")
     .sort((a, b) => {
       const countryCmp = a.country.localeCompare(b.country, "en", { sensitivity: "base" });
       if (countryCmp !== 0) return countryCmp;
