@@ -87,9 +87,11 @@ const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
 const WorldMap = ({ onLocationClick }: WorldMapProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+  const [center, setCenter] = useState<[number, number]>(INITIAL_CENTER);
   const [zoom, setZoom] = useState(INITIAL_ZOOM);
   const mapOnlyPins = filterCrowdedMapOnlyPins(mapOnlyRequestedPins);
-  const labelFontSize = "8px";
+  const labelSizeCompensation = 1 + Math.max(0, zoom - INITIAL_ZOOM) * 0.03;
+  const labelFontSize = `${8 / labelSizeCompensation}px`;
   const labelOffsetY = -12;
   const markerScaleCompensation = Math.sqrt(Math.max(zoom, 1));
   const readZoom = (position: unknown): number => {
@@ -98,6 +100,19 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
     if (Number.isFinite(candidate.zoom)) return candidate.zoom as number;
     if (Number.isFinite(candidate.k)) return candidate.k as number;
     return 1;
+  };
+  const readCenter = (position: unknown): [number, number] | null => {
+    if (!position || typeof position !== "object") return null;
+    const candidate = position as { coordinates?: [number, number] };
+    if (
+      Array.isArray(candidate.coordinates) &&
+      candidate.coordinates.length === 2 &&
+      Number.isFinite(candidate.coordinates[0]) &&
+      Number.isFinite(candidate.coordinates[1])
+    ) {
+      return candidate.coordinates;
+    }
+    return null;
   };
   const clampZoom = (value: number) => Math.min(8, Math.max(INITIAL_ZOOM, value));
   const zoomBy = (delta: number) => {
@@ -111,11 +126,14 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
     const onWheel = (event: WheelEvent) => {
       if (!event.ctrlKey) return;
       event.preventDefault();
-      zoomBy(event.deltaY < 0 ? 0.5 : -0.5);
+      event.stopPropagation();
+      const delta = event.deltaY < 0 ? 0.45 : -0.45;
+      zoomBy(delta);
     };
 
     const onGesture = (event: Event) => {
       event.preventDefault();
+      event.stopPropagation();
     };
 
     el.addEventListener("wheel", onWheel, { passive: false });
@@ -158,16 +176,20 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
         style={{ maxHeight: "500px" }}
       >
         <ZoomableGroup
-          center={INITIAL_CENTER}
+          center={center}
           zoom={zoom}
           minZoom={INITIAL_ZOOM}
           maxZoom={8}
           disablePanning
           onMove={(position) => {
             setZoom(clampZoom(readZoom(position)));
+            const nextCenter = readCenter(position);
+            if (nextCenter) setCenter(nextCenter);
           }}
           onMoveEnd={(position) => {
             setZoom(clampZoom(readZoom(position)));
+            const nextCenter = readCenter(position);
+            if (nextCenter) setCenter(nextCenter);
           }}
         >
           <Geographies geography={GEO_URL}>
