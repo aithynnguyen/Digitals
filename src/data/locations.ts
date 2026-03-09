@@ -72,6 +72,26 @@ export const locations: LocationData[] = [
   },
   // France
   {
+    slug: "chamonix",
+    city: "Chamonix",
+    country: "France",
+    coordinates: [6.8694, 45.9237],
+    images: [
+      { src: "/images/chamonix/DSC05258.JPG", alt: "Chamonix 1" },
+      { src: "/images/chamonix/DSC05247.JPG", alt: "Chamonix 2" },
+      { src: "/images/chamonix/DSC05266.JPG", alt: "Chamonix 3" },
+      { src: "/images/chamonix/DSC05252.JPG", alt: "Chamonix 4" },
+      { src: "/images/chamonix/DSC05263.JPG", alt: "Chamonix 5" },
+      { src: "/images/chamonix/DSC05264.JPG", alt: "Chamonix 6" },
+      { src: "/images/chamonix/DSC05273.JPG", alt: "Chamonix 7" },
+      { src: "/images/chamonix/DSC05255.JPG", alt: "Chamonix 8" },
+      { src: "/images/chamonix/DSC05267.JPG", alt: "Chamonix 9" },
+      { src: "/images/chamonix/DSC05262.JPG", alt: "Chamonix 10" },
+      { src: "/images/chamonix/DSC05268.JPG", alt: "Chamonix 11" },
+      { src: "/images/chamonix/DSC05269.JPG", alt: "Chamonix 12" },
+    ],
+  },
+  {
     slug: "paris",
     city: "Paris",
     country: "France",
@@ -113,9 +133,41 @@ export const locations: LocationData[] = [
     country: "Switzerland",
     coordinates: [6.1432, 46.2044],
     images: [
-      { src: "", alt: "Geneva 1" },
-      { src: "", alt: "Geneva 2" },
-      { src: "", alt: "Geneva 3" },
+      { src: "/images/geneva/DSC05162.JPG", alt: "Geneva 1" },
+      { src: "/images/geneva/DSC05164.JPG", alt: "Geneva 2" },
+      { src: "/images/geneva/DSC05211.JPG", alt: "Geneva 15" },
+
+      { src: "/images/geneva/DSC05175.JPG", alt: "Geneva 5" },
+      { src: "/images/geneva/DSC05171.JPG", alt: "Geneva 3" },
+
+      { src: "/images/geneva/DSC05182.JPG", alt: "Geneva 7" },
+      { src: "/images/geneva/DSC05183.JPG", alt: "Geneva 8" },
+
+
+
+      { src: "/images/geneva/DSC05205.JPG", alt: "Geneva 13" },
+
+      { src: "/images/geneva/DSC05239.JPG", alt: "Geneva 22--" },
+      { src: "/images/geneva/DSC05284.JPG", alt: "Geneva 27--" },
+
+      { src: "/images/geneva/DSC05279.JPG", alt: "Geneva 25--" },
+      { src: "/images/geneva/DSC05180.JPG", alt: "Geneva 6" },
+
+      { src: "/images/geneva/DSC05172.JPG", alt: "Geneva 4" },
+      { src: "/images/geneva/DSC05207.JPG", alt: "Geneva 14" },
+
+      { src: "/images/geneva/DSC05214.JPG", alt: "Geneva 16" },
+
+
+
+      { src: "/images/geneva/DSC05221.JPG", alt: "Geneva 17" },
+      { src: "/images/geneva/DSC05202.JPG", alt: "Geneva 12" },
+
+      { src: "/images/geneva/DSC05234.JPG", alt: "Geneva 21" },
+      { src: "/images/geneva/DSC05240.JPG", alt: "Geneva 23--" },
+      { src: "/images/geneva/DSC05242.JPG", alt: "Geneva 24--" },
+
+      { src: "/images/geneva/DSC05290.JPG", alt: "Geneva 28--" },
     ],
   },
   // Ireland
@@ -422,7 +474,6 @@ export const friendsGallery = {
     { src: "/images/friends/friends_!.JPG", alt: "Friends 1" },
     { src: "/images/friends/friends_5.jpg", alt: "Friends 2" },
     { src: "/images/friends/friends_6.JPG", alt: "Friends 3" },
-    { src: "/images/friends/friends_2.JPG", alt: "Friends 4" },
     { src: "/images/friends/friends_3.jpg", alt: "Friends 5" },
     { src: "/images/friends/friends_9.jpg", alt: "Friends 6" },
     { src: "/images/friends/friends_10.jpg", alt: "Friends 7" },
