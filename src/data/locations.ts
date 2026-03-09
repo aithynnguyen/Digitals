@@ -1,11 +1,21 @@
 import { driveCityImageOverrides } from "./drive-images.generated";
+import { imageDimensionsBySrc } from "./image-dimensions.generated";
+
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  thumbSrc?: string;
+  previewSrc?: string;
+  width?: number;
+  height?: number;
+}
 
 export interface LocationData {
   slug: string;
   city: string;
   country: string;
   coordinates: [number, number]; // [longitude, latitude] for the map
-  images: { src: string; alt: string }[];
+  images: GalleryImage[];
 }
 
 const withPagesBase = (src: string): string => {
@@ -14,6 +24,33 @@ const withPagesBase = (src: string): string => {
   }
 
   return src;
+};
+
+const toLocalImagePath = (src: string): string | null => {
+  if (src.startsWith("/images/")) {
+    return src;
+  }
+
+  const base = import.meta.env.BASE_URL || "/";
+  if (base !== "/" && src.startsWith(base)) {
+    const withoutBase = `/${src.slice(base.length)}`;
+    if (withoutBase.startsWith("/images/")) {
+      return withoutBase;
+    }
+  }
+
+  return null;
+};
+
+const getFirstImageSrc = (images: { src: string }[]): string => {
+  return images.find((image) => Boolean(image.src))?.src || "";
+};
+
+const toPreviewLocalPath = (src: string): string | null => {
+  const localPath = toLocalImagePath(src);
+  if (!localPath) return null;
+  if (!/\.(jpe?g)$/i.test(localPath)) return null;
+  return localPath.replace("/images/", "/images-thumb/");
 };
 
 export const locations: LocationData[] = [
@@ -500,14 +537,36 @@ locations.forEach((location) => {
     }));
   }
 
+  const cityThumbnailSrc = getFirstImageSrc(location.images);
   location.images = location.images.map((image) => ({
     ...image,
+    thumbSrc: cityThumbnailSrc ? withPagesBase(cityThumbnailSrc) : "",
+    previewSrc: (() => {
+      const previewPath = toPreviewLocalPath(image.src);
+      return previewPath ? withPagesBase(previewPath) : "";
+    })(),
+    ...(() => {
+      const localPath = toLocalImagePath(image.src);
+      if (!localPath) return {};
+      return imageDimensionsBySrc[localPath] || {};
+    })(),
     src: withPagesBase(image.src),
   }));
 });
 
+const friendsThumbnailSrc = getFirstImageSrc(friendsGallery.images);
 friendsGallery.images = friendsGallery.images.map((image) => ({
   ...image,
+  thumbSrc: friendsThumbnailSrc ? withPagesBase(friendsThumbnailSrc) : "",
+  previewSrc: (() => {
+    const previewPath = toPreviewLocalPath(image.src);
+    return previewPath ? withPagesBase(previewPath) : "";
+  })(),
+  ...(() => {
+    const localPath = toLocalImagePath(image.src);
+    if (!localPath) return {};
+    return imageDimensionsBySrc[localPath] || {};
+  })(),
   src: withPagesBase(image.src),
 }));
 

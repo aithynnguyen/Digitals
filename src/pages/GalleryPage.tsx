@@ -1,68 +1,79 @@
-import { useState, useRef, useEffect, useCallback, type SyntheticEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Layout from "@/components/Layout";
 import Lightbox from "@/components/Lightbox";
-import { getLocationBySlug, friendsGallery } from "@/data/locations";
+import { getLocationBySlug, friendsGallery, type GalleryImage } from "@/data/locations";
 
-const LazyImage = ({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) => {
+const INITIAL_BATCH_SIZE = 10;
+const BATCH_SIZE = 8;
+
+const getAspectClass = (image: GalleryImage): string => {
+  const w = image.width || 0;
+  const h = image.height || 0;
+  if (!w || !h) return "aspect-square";
+  if (w > h * 1.05) return "aspect-[4/3]";
+  if (h > w * 1.05) return "aspect-[3/4]";
+  return "aspect-square";
+};
+
+const LazyImage = ({ image, index, onClick }: { image: GalleryImage; index: number; onClick: () => void }) => {
   const [inView, setInView] = useState(false);
-  const [aspectClass, setAspectClass] = useState("aspect-square");
+  const [loaded, setLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const previewWidth = image.width ? Math.min(960, image.width) : 960;
+  const srcSet =
+    image.previewSrc && image.width
+      ? `${image.previewSrc} ${previewWidth}w, ${image.src} ${image.width}w`
+      : undefined;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect(); } },
-      { rootMargin: "200px" }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "80px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  const handleImageLoad = useCallback((event: SyntheticEvent<HTMLImageElement>) => {
-    const img = event.currentTarget;
-    const w = img.naturalWidth || 0;
-    const h = img.naturalHeight || 0;
-    if (!w || !h) {
-      setAspectClass("aspect-square");
-      return;
-    }
-
-    // Requested gallery rule:
-    // - horizontal image -> 4:3 container
-    // - vertical image -> 3:4 container
-    // - near-square -> square
-    if (w > h * 1.05) {
-      setAspectClass("aspect-[4/3]");
-      return;
-    }
-    if (h > w * 1.05) {
-      setAspectClass("aspect-[3/4]");
-      return;
-    }
-    setAspectClass("aspect-square");
-  }, []);
-
   return (
     <div
       ref={ref}
-      className={`${aspectClass} overflow-hidden hover:scale-[1.02] transition-transform duration-500 cursor-pointer`}
+      className={`${getAspectClass(image)} overflow-hidden hover:scale-[1.02] transition-transform duration-500 cursor-pointer`}
       onClick={onClick}
     >
       {inView ? (
-        <img
-          src={src}
-          alt={alt}
-          loading="lazy"
-          decoding="async"
-          onLoad={handleImageLoad}
-          className="w-full h-full object-cover"
-        />
+        <div className="relative w-full h-full">
+          {image.thumbSrc ? (
+            <img
+              src={image.thumbSrc}
+              alt=""
+              aria-hidden="true"
+              className={`absolute inset-0 w-full h-full object-cover blur-sm scale-105 transition-opacity duration-300 ${loaded ? "opacity-0" : "opacity-45"}`}
+            />
+          ) : null}
+          <img
+            src={image.src}
+            srcSet={srcSet}
+            alt={image.alt}
+            loading={index < 2 ? "eager" : "lazy"}
+            fetchPriority={index < 2 ? "high" : "auto"}
+            decoding="async"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            onLoad={() => setLoaded(true)}
+            className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
+          />
+        </div>
       ) : (
-        <div className="w-full h-full" />
+        <div className="w-full h-full bg-muted/40" />
       )}
     </div>
   );
@@ -72,6 +83,8 @@ const GalleryPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH_SIZE);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
   const isFriends = slug === "ode-to-my-friends";
   const location = isFriends ? null : getLocationBySlug(slug || "");
@@ -79,6 +92,27 @@ const GalleryPage = () => {
   const galleryTitle = isFriends ? friendsGallery.title : location?.city;
   const gallerySubtitle = isFriends ? "To creating endless memories" : location?.country;
   const galleryImages = isFriends ? friendsGallery.images : location?.images;
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_BATCH_SIZE);
+  }, [slug]);
+
+  useEffect(() => {
+    if (!galleryImages?.length) return;
+    const el = loadMoreRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setVisibleCount((prev) => Math.min(prev + BATCH_SIZE, galleryImages.length));
+      },
+      { rootMargin: "600px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [galleryImages?.length]);
 
   if (!galleryImages) {
     return (
@@ -121,7 +155,7 @@ const GalleryPage = () => {
         </motion.div>
 
         <div className="mt-12 columns-1 sm:columns-2 gap-4 max-w-4xl mx-auto space-y-4">
-          {galleryImages.map((image, i) => (
+          {galleryImages.slice(0, visibleCount).map((image, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 15 }}
@@ -131,7 +165,7 @@ const GalleryPage = () => {
               className="break-inside-avoid"
             >
               {image.src ? (
-                <LazyImage src={image.src} alt={image.alt} onClick={() => openLightbox(i)} />
+                <LazyImage image={image} index={i} onClick={() => openLightbox(i)} />
               ) : (
                 <div className="photo-placeholder aspect-[4/3]">
                   <span className="mono-caption text-xs">{image.alt}</span>
@@ -139,6 +173,7 @@ const GalleryPage = () => {
               )}
             </motion.div>
           ))}
+          {visibleCount < galleryImages.length ? <div ref={loadMoreRef} className="h-8 w-full" /> : null}
         </div>
       </div>
 
