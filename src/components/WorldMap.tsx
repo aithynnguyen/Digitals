@@ -1,5 +1,5 @@
 import { Minus, Plus } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -85,7 +85,6 @@ const filterCrowdedMapOnlyPins = (pins: MapOnlyPin[]): MapOnlyPin[] => {
 };
 
 const WorldMap = ({ onLocationClick }: WorldMapProps) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const [center, setCenter] = useState<[number, number]>(INITIAL_CENTER);
   const [zoom, setZoom] = useState(INITIAL_ZOOM);
@@ -119,38 +118,10 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
     setZoom((current) => clampZoom(current + delta));
   };
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const onWheel = (event: WheelEvent) => {
-      if (!event.ctrlKey) return;
-      event.preventDefault();
-      event.stopPropagation();
-      const delta = event.deltaY < 0 ? 0.45 : -0.45;
-      zoomBy(delta);
-    };
-
-    const onGesture = (event: Event) => {
-      event.preventDefault();
-      event.stopPropagation();
-    };
-
-    el.addEventListener("wheel", onWheel, { passive: false });
-    el.addEventListener("gesturestart", onGesture, { passive: false });
-    el.addEventListener("gesturechange", onGesture, { passive: false });
-
-    return () => {
-      el.removeEventListener("wheel", onWheel);
-      el.removeEventListener("gesturestart", onGesture);
-      el.removeEventListener("gesturechange", onGesture);
-    };
-  }, []);
-
   return (
     <div
-      ref={containerRef}
       className="relative w-full border border-border bg-secondary/30"
+      style={{ touchAction: "none" }}
     >
       <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
         <button
@@ -180,7 +151,6 @@ const WorldMap = ({ onLocationClick }: WorldMapProps) => {
           zoom={zoom}
           minZoom={INITIAL_ZOOM}
           maxZoom={8}
-          disablePanning
           onMove={(position) => {
             setZoom(clampZoom(readZoom(position)));
             const nextCenter = readCenter(position);
