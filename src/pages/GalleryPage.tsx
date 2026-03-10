@@ -9,24 +9,9 @@ import { getLocationBySlug, friendsGallery, type GalleryImage } from "@/data/loc
 const INITIAL_BATCH_SIZE = 10;
 const BATCH_SIZE = 8;
 
-const getAspectClass = (image: GalleryImage): string => {
-  const w = image.width || 0;
-  const h = image.height || 0;
-  if (!w || !h) return "aspect-square";
-  if (w > h * 1.05) return "aspect-[4/3]";
-  if (h > w * 1.05) return "aspect-[3/4]";
-  return "aspect-square";
-};
-
 const LazyImage = ({ image, index, onClick }: { image: GalleryImage; index: number; onClick: () => void }) => {
   const [inView, setInView] = useState(false);
-  const [loaded, setLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const previewWidth = image.width ? Math.min(960, image.width) : 960;
-  const srcSet =
-    image.previewSrc && image.width
-      ? `${image.previewSrc} ${previewWidth}w, ${image.src} ${image.width}w`
-      : undefined;
 
   useEffect(() => {
     const el = ref.current;
@@ -47,33 +32,22 @@ const LazyImage = ({ image, index, onClick }: { image: GalleryImage; index: numb
   return (
     <div
       ref={ref}
-      className={`${getAspectClass(image)} overflow-hidden hover:scale-[1.02] transition-transform duration-500 cursor-pointer`}
+      className="overflow-hidden hover:scale-[1.01] transition-transform duration-500 cursor-pointer"
       onClick={onClick}
     >
       {inView ? (
-        <div className="relative w-full h-full">
-          {image.thumbSrc ? (
-            <img
-              src={image.thumbSrc}
-              alt=""
-              aria-hidden="true"
-              className={`absolute inset-0 w-full h-full object-cover blur-sm scale-105 transition-opacity duration-300 ${loaded ? "opacity-0" : "opacity-45"}`}
-            />
-          ) : null}
+        <div className="w-full">
           <img
             src={image.src}
-            srcSet={srcSet}
             alt={image.alt}
             loading={index < 2 ? "eager" : "lazy"}
             fetchPriority={index < 2 ? "high" : "auto"}
             decoding="async"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            onLoad={() => setLoaded(true)}
-            className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
+            className="w-full h-auto"
           />
         </div>
       ) : (
-        <div className="w-full h-full bg-muted/40" />
+        <div className="w-full h-64 bg-muted/40" />
       )}
     </div>
   );
