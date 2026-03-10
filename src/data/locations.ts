@@ -172,39 +172,25 @@ export const locations: LocationData[] = [
     images: [
       { src: "/images/geneva/DSC05162.JPG", alt: "Geneva 1" },
       { src: "/images/geneva/DSC05164.JPG", alt: "Geneva 2" },
-      { src: "/images/geneva/DSC05211.JPG", alt: "Geneva 15" },
-
-      { src: "/images/geneva/DSC05175.JPG", alt: "Geneva 5" },
-      { src: "/images/geneva/DSC05171.JPG", alt: "Geneva 3" },
-
-      { src: "/images/geneva/DSC05182.JPG", alt: "Geneva 7" },
-      { src: "/images/geneva/DSC05183.JPG", alt: "Geneva 8" },
-
-
-
-      { src: "/images/geneva/DSC05205.JPG", alt: "Geneva 13" },
-
-      { src: "/images/geneva/DSC05239.JPG", alt: "Geneva 22--" },
-      { src: "/images/geneva/DSC05284.JPG", alt: "Geneva 27--" },
-
-      { src: "/images/geneva/DSC05279.JPG", alt: "Geneva 25--" },
-      { src: "/images/geneva/DSC05180.JPG", alt: "Geneva 6" },
-
-      { src: "/images/geneva/DSC05172.JPG", alt: "Geneva 4" },
+      { src: "/images/geneva/DSC05211.JPG", alt: "Geneva 3" },
+      { src: "/images/geneva/DSC05175.JPG", alt: "Geneva 4" },
+      { src: "/images/geneva/DSC05171.JPG", alt: "Geneva 5" },
+      { src: "/images/geneva/DSC05182.JPG", alt: "Geneva 6" },
+      { src: "/images/geneva/DSC05183.JPG", alt: "Geneva 7" },
+      { src: "/images/geneva/DSC05205.JPG", alt: "Geneva 8" },
+      { src: "/images/geneva/DSC05239.JPG", alt: "Geneva 9" },
+      { src: "/images/geneva/DSC05284.JPG", alt: "Geneva 10" },
+      { src: "/images/geneva/DSC05279.JPG", alt: "Geneva 11" },
+      { src: "/images/geneva/DSC05180.JPG", alt: "Geneva 12" },
+      { src: "/images/geneva/DSC05172.JPG", alt: "Geneva 13" },
       { src: "/images/geneva/DSC05207.JPG", alt: "Geneva 14" },
-
-      { src: "/images/geneva/DSC05214.JPG", alt: "Geneva 16" },
-
-
-
-      { src: "/images/geneva/DSC05221.JPG", alt: "Geneva 17" },
-      { src: "/images/geneva/DSC05202.JPG", alt: "Geneva 12" },
-
-      { src: "/images/geneva/DSC05234.JPG", alt: "Geneva 21" },
-      { src: "/images/geneva/DSC05240.JPG", alt: "Geneva 23--" },
-      { src: "/images/geneva/DSC05242.JPG", alt: "Geneva 24--" },
-
-      { src: "/images/geneva/DSC05290.JPG", alt: "Geneva 28--" },
+      { src: "/images/geneva/DSC05214.JPG", alt: "Geneva 15" },
+      { src: "/images/geneva/DSC05221.JPG", alt: "Geneva 16" },
+      { src: "/images/geneva/DSC05202.JPG", alt: "Geneva 17" },
+      { src: "/images/geneva/DSC05234.JPG", alt: "Geneva 18" },
+      { src: "/images/geneva/DSC05240.JPG", alt: "Geneva 19" },
+      { src: "/images/geneva/DSC05242.JPG", alt: "Geneva 20" },
+      { src: "/images/geneva/DSC05290.JPG", alt: "Geneva 21" },
     ],
   },
   // Ireland
@@ -262,9 +248,28 @@ export const locations: LocationData[] = [
     country: "Spain",
     coordinates: [-14.0010, 28.3587],
     images: [
-      { src: "", alt: "Fuerteventura 1" },
-      { src: "", alt: "Fuerteventura 2" },
-      { src: "", alt: "Fuerteventura 3" },
+      { src: "/images/fuerteventura/DSC04984.JPG", alt: "Fuerteventura 1" },
+      { src: "/images/fuerteventura/DSC04986.JPG", alt: "Fuerteventura 2" },
+      { src: "/images/fuerteventura/DSC04990.JPG", alt: "Fuerteventura 3" },
+      { src: "/images/fuerteventura/DSC04992.JPG", alt: "Fuerteventura 4" },
+      { src: "/images/fuerteventura/DSC04994.JPG", alt: "Fuerteventura 5" },
+      { src: "/images/fuerteventura/DSC04996.JPG", alt: "Fuerteventura 6" },
+      { src: "/images/fuerteventura/DSC04999.JPG", alt: "Fuerteventura 7" },
+      { src: "/images/fuerteventura/DSC05005.JPG", alt: "Fuerteventura 8" },
+      { src: "/images/fuerteventura/DSC05008.JPG", alt: "Fuerteventura 9" },
+      { src: "/images/fuerteventura/DSC05009.JPG", alt: "Fuerteventura 10" },
+      { src: "/images/fuerteventura/DSC05013.JPG", alt: "Fuerteventura 11" },
+      { src: "/images/fuerteventura/DSC05028.JPG", alt: "Fuerteventura 12" },
+      { src: "/images/fuerteventura/DSC05095.JPG", alt: "Fuerteventura 13" },
+      { src: "/images/fuerteventura/DSC05096.JPG", alt: "Fuerteventura 14" },
+      { src: "/images/fuerteventura/DSC05132.JPG", alt: "Fuerteventura 15" },
+      { src: "/images/fuerteventura/DSC05134.JPG", alt: "Fuerteventura 16" },
+      { src: "/images/fuerteventura/DSC05135.JPG", alt: "Fuerteventura 17" },
+      { src: "/images/fuerteventura/DSC05139.JPG", alt: "Fuerteventura 18" },
+      { src: "/images/fuerteventura/DSC05140.JPG", alt: "Fuerteventura 19" },
+      { src: "/images/fuerteventura/DSC05145.JPG", alt: "Fuerteventura 20" },
+      { src: "/images/fuerteventura/DSC05152.JPG", alt: "Fuerteventura 21" },
+      { src: "/images/fuerteventura/DSC05155.JPG", alt: "Fuerteventura 22" },
     ],
   },
   {
@@ -273,9 +278,21 @@ export const locations: LocationData[] = [
     country: "Spain",
     coordinates: [-13.6318, 28.9638],
     images: [
-      { src: "", alt: "Lanzarote 1" },
-      { src: "", alt: "Lanzarote 2" },
-      { src: "", alt: "Lanzarote 3" },
+      { src: "/images/lanzarote/DSC05030.JPG", alt: "Lanzarote 1" },
+      { src: "/images/lanzarote/DSC05031.JPG", alt: "Lanzarote 2" },
+      { src: "/images/lanzarote/DSC05034.JPG", alt: "Lanzarote 3" },
+      { src: "/images/lanzarote/DSC05035.JPG", alt: "Lanzarote 4" },
+      { src: "/images/lanzarote/DSC05036.JPG", alt: "Lanzarote 5" },
+      { src: "/images/lanzarote/DSC05037.JPG", alt: "Lanzarote 6" },
+      { src: "/images/lanzarote/DSC05038.JPG", alt: "Lanzarote 7" },
+      { src: "/images/lanzarote/DSC05039.JPG", alt: "Lanzarote 8" },
+      { src: "/images/lanzarote/DSC05042.JPG", alt: "Lanzarote 9" },
+      { src: "/images/lanzarote/DSC05049.JPG", alt: "Lanzarote 10" },
+      { src: "/images/lanzarote/DSC05074.JPG", alt: "Lanzarote 11" },
+      { src: "/images/lanzarote/DSC05077.JPG", alt: "Lanzarote 12" },
+      { src: "/images/lanzarote/DSC05079.JPG", alt: "Lanzarote 13" },
+      { src: "/images/lanzarote/DSC05080.JPG", alt: "Lanzarote 14" },
+      { src: "/images/lanzarote/DSC05090.JPG", alt: "Lanzarote 15" },
     ],
   },
   {
