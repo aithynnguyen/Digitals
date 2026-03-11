@@ -56,6 +56,33 @@ const toPreviewLocalPath = (src: string): string | null => {
 export const locations: LocationData[] = [
   // Canada
   {
+    slug: "algonquin-park",
+    city: "Algonquin Park",
+    country: "Canada",
+    coordinates: [-78.3848, 45.8372],
+    images: [
+      { src: "/images/algonquin-park/DSC03203.JPG", alt: "Algonquin Park 1" },
+      { src: "/images/algonquin-park/DSC03226.JPG", alt: "Algonquin Park 5" },
+
+      { src: "/images/algonquin-park/DSC03209.JPG", alt: "Algonquin Park 2" },
+      { src: "/images/algonquin-park/DSC03222.JPG", alt: "Algonquin Park 4" },
+      { src: "/images/algonquin-park/DSC03247.JPG", alt: "Algonquin Park 10" },
+
+
+      { src: "/images/algonquin-park/DSC03231.JPG", alt: "Algonquin Park 6" },
+  
+
+      { src: "/images/algonquin-park/DSC03236.JPG", alt: "Algonquin Park 8" },
+      { src: "/images/algonquin-park/DSC03211.JPG", alt: "Algonquin Park 3" },
+
+      { src: "/images/algonquin-park/DSC03232.JPG", alt: "Algonquin Park 7" },
+
+      { src: "/images/algonquin-park/DSC03238.JPG", alt: "Algonquin Park 9" },
+
+      { src: "/images/algonquin-park/DSC03257.JPG", alt: "Algonquin Park 11" },
+    ],
+  },
+  {
     slug: "toronto",
     city: "Toronto",
     country: "Canada",
@@ -429,7 +456,6 @@ export const locations: LocationData[] = [
       { src: "/images/big-sur/DSC02143.jpg", alt: "San Francisco 15" },
       { src: "/images/san-francisco/DSC03360.JPG", alt: "San Francisco 16" },
       { src: "/images/san-francisco/DSC03610.JPG", alt: "San Francisco 17" },
-
       { src: "/images/san-francisco/DSC03623.JPG", alt: "San Francisco 18" },      
       { src: "/images/big-sur/DSC02067.jpg", alt: "San Francisco 19" },
       { src: "/images/san-francisco/DSC03365.JPG", alt: "San Francisco 20" },
