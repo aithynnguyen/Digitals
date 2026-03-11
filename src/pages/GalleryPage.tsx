@@ -137,7 +137,12 @@ const GalleryPage = () => {
     setLightboxOpen(true);
   };
 
-  const splitIndex = slug === "san-francisco" ? 17 : Math.ceil(galleryImages.length / 2);
+  const splitIndex =
+    slug === "san-francisco"
+      ? 17
+      : slug === "vancouver"
+        ? 10
+        : Math.ceil(galleryImages.length / 2);
   const rightColumnTotal = galleryImages.length - splitIndex;
   const leftColumnVisibleCount = Math.min(splitIndex, Math.ceil(visibleCount / 2));
   const rightColumnVisibleCount = Math.min(rightColumnTotal, Math.floor(visibleCount / 2));
