@@ -95,6 +95,7 @@ const GalleryPage = () => {
   const galleryTitle = isFriends ? friendsGallery.title : location?.city;
   const gallerySubtitle = isFriends ? "To creating endless memories" : location?.country;
   const galleryImages = isFriends ? friendsGallery.images : location?.images;
+  const useMasonryColumns = slug === "san-francisco";
 
   useEffect(() => {
     setVisibleCount(INITIAL_BATCH_SIZE);
@@ -147,6 +148,7 @@ const GalleryPage = () => {
   const rightColumn = galleryImages
     .slice(splitIndex, splitIndex + rightColumnVisibleCount)
     .map((image, index) => ({ image, index: index + splitIndex }));
+  const visibleImages = galleryImages.slice(0, visibleCount);
 
   return (
     <Layout>
@@ -168,33 +170,60 @@ const GalleryPage = () => {
           <p className="mono-caption text-muted-foreground">{gallerySubtitle}</p>
         </motion.div>
 
-        <div className="mt-12 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
-          {[leftColumn, rightColumn].map((column, columnIndex) => (
-            <div key={columnIndex} className="space-y-4">
-              {column.map(({ image, index }, imageIndex) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {image.src ? (
-                    <LazyImage
-                      image={image}
-                      eager={imageIndex < 2}
-                      onClick={() => openLightbox(index)}
-                    />
-                  ) : (
-                    <div className="photo-placeholder aspect-[4/3]">
-                      <span className="mono-caption text-xs">{image.alt}</span>
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          ))}
-        </div>
+        {useMasonryColumns ? (
+          <div className="mt-12 max-w-4xl mx-auto columns-1 sm:columns-2 gap-4 space-y-4">
+            {visibleImages.map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "100px" }}
+                transition={{ duration: 0.4 }}
+                className="mb-4 break-inside-avoid"
+              >
+                {image.src ? (
+                  <LazyImage
+                    image={image}
+                    eager={index < 4}
+                    onClick={() => openLightbox(index)}
+                  />
+                ) : (
+                  <div className="photo-placeholder aspect-[4/3]">
+                    <span className="mono-caption text-xs">{image.alt}</span>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-12 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+            {[leftColumn, rightColumn].map((column, columnIndex) => (
+              <div key={columnIndex} className="space-y-4">
+                {column.map(({ image, index }, imageIndex) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "100px" }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    {image.src ? (
+                      <LazyImage
+                        image={image}
+                        eager={imageIndex < 2}
+                        onClick={() => openLightbox(index)}
+                      />
+                    ) : (
+                      <div className="photo-placeholder aspect-[4/3]">
+                        <span className="mono-caption text-xs">{image.alt}</span>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
         {visibleCount < galleryImages.length ? <div ref={loadMoreRef} className="h-8 w-full" /> : null}
       </div>
 
