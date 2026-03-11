@@ -140,10 +140,10 @@ const GalleryPage = () => {
   const splitIndex =
     slug === "san-francisco"
       ? 17
-      : slug === "vancouver"
-        ? 10
+        : slug === "vancouver"
+          ? 10
         : slug === "big-sur"
-          ? 12
+          ? 11
         : Math.ceil(galleryImages.length / 2);
   const rightColumnTotal = galleryImages.length - splitIndex;
   const leftColumnVisibleCount = Math.min(splitIndex, Math.ceil(visibleCount / 2));
