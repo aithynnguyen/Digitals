@@ -138,10 +138,12 @@ const GalleryPage = () => {
   };
 
   const splitIndex = Math.ceil(galleryImages.length / 2);
+  const rightColumnTotal = galleryImages.length - splitIndex;
+  const leftColumnVisibleCount = Math.min(splitIndex, Math.ceil(visibleCount / 2));
+  const rightColumnVisibleCount = Math.min(rightColumnTotal, Math.floor(visibleCount / 2));
   const leftColumn = galleryImages
-    .slice(0, Math.min(splitIndex, visibleCount))
+    .slice(0, leftColumnVisibleCount)
     .map((image, index) => ({ image, index }));
-  const rightColumnVisibleCount = Math.max(0, visibleCount - splitIndex);
   const rightColumn = galleryImages
     .slice(splitIndex, splitIndex + rightColumnVisibleCount)
     .map((image, index) => ({ image, index: index + splitIndex }));
@@ -190,12 +192,10 @@ const GalleryPage = () => {
                   )}
                 </motion.div>
               ))}
-              {columnIndex === 0 && visibleCount < galleryImages.length ? (
-                <div ref={loadMoreRef} className="h-8 w-full" />
-              ) : null}
             </div>
           ))}
         </div>
+        {visibleCount < galleryImages.length ? <div ref={loadMoreRef} className="h-8 w-full" /> : null}
       </div>
 
       <Lightbox
