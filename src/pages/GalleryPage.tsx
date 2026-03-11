@@ -5,17 +5,40 @@ import { ArrowLeft } from "lucide-react";
 import Layout from "@/components/Layout";
 import Lightbox from "@/components/Lightbox";
 import { getLocationBySlug, friendsGallery, type GalleryImage } from "@/data/locations";
+import { imageDimensionsBySrc } from "@/data/image-dimensions.generated";
 
 const INITIAL_BATCH_SIZE = 10;
 const BATCH_SIZE = 8;
 
-const LazyImage = ({ image, index, onClick }: { image: GalleryImage; index: number; onClick: () => void }) => {
+const getImageAspectRatio = (image: GalleryImage) => {
+  if (image.width && image.height) return image.width / image.height;
+  if (!image.src) return 4 / 3;
+  const localPath = image.src.replace(/^\/Digitals\//, "/");
+  const dimensions = imageDimensionsBySrc[localPath];
+  if (!dimensions) return 4 / 3;
+  return dimensions.width / dimensions.height;
+};
+
+const LazyImage = ({
+  image,
+  eager,
+  onClick,
+}: {
+  image: GalleryImage;
+  eager: boolean;
+  onClick: () => void;
+}) => {
   const [inView, setInView] = useState(false);
+  const [aspectRatio, setAspectRatio] = useState(() => getImageAspectRatio(image));
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (eager) {
+      setInView(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,20 +57,26 @@ const LazyImage = ({ image, index, onClick }: { image: GalleryImage; index: numb
       ref={ref}
       className="overflow-hidden hover:scale-[1.01] transition-transform duration-500 cursor-pointer"
       onClick={onClick}
+      style={{ aspectRatio: `${aspectRatio}` }}
     >
       {inView ? (
-        <div className="w-full">
+        <div className="w-full h-full">
           <img
             src={image.src}
             alt={image.alt}
-            loading={index < 2 ? "eager" : "lazy"}
-            fetchPriority={index < 2 ? "high" : "auto"}
+            loading={eager ? "eager" : "lazy"}
+            fetchPriority={eager ? "high" : "auto"}
             decoding="async"
-            className="w-full h-auto"
+            onLoad={(event) => {
+              const { naturalWidth, naturalHeight } = event.currentTarget;
+              if (!naturalWidth || !naturalHeight) return;
+              setAspectRatio(naturalWidth / naturalHeight);
+            }}
+            className="w-full h-full object-cover object-center"
           />
         </div>
       ) : (
-        <div className="w-full h-64 bg-muted/40" />
+        <div className="w-full h-full bg-muted/40" />
       )}
     </div>
   );
@@ -108,6 +137,13 @@ const GalleryPage = () => {
     setLightboxOpen(true);
   };
 
+  const visibleImages = galleryImages.slice(0, visibleCount);
+  const splitIndex = Math.ceil(visibleImages.length / 2);
+  const leftColumn = visibleImages.slice(0, splitIndex).map((image, index) => ({ image, index }));
+  const rightColumn = visibleImages
+    .slice(splitIndex)
+    .map((image, index) => ({ image, index: index + splitIndex }));
+
   return (
     <Layout>
       <div className="p-6 md:p-10 lg:p-12">
@@ -128,26 +164,35 @@ const GalleryPage = () => {
           <p className="mono-caption text-muted-foreground">{gallerySubtitle}</p>
         </motion.div>
 
-        <div className="mt-12 columns-1 sm:columns-2 gap-4 max-w-4xl mx-auto space-y-4">
-          {galleryImages.slice(0, visibleCount).map((image, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "100px" }}
-              transition={{ duration: 0.4 }}
-              className="break-inside-avoid"
-            >
-              {image.src ? (
-                <LazyImage image={image} index={i} onClick={() => openLightbox(i)} />
-              ) : (
-                <div className="photo-placeholder aspect-[4/3]">
-                  <span className="mono-caption text-xs">{image.alt}</span>
-                </div>
-              )}
-            </motion.div>
+        <div className="mt-12 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+          {[leftColumn, rightColumn].map((column, columnIndex) => (
+            <div key={columnIndex} className="space-y-4">
+              {column.map(({ image, index }, imageIndex) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "100px" }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {image.src ? (
+                    <LazyImage
+                      image={image}
+                      eager={imageIndex < 2}
+                      onClick={() => openLightbox(index)}
+                    />
+                  ) : (
+                    <div className="photo-placeholder aspect-[4/3]">
+                      <span className="mono-caption text-xs">{image.alt}</span>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+              {columnIndex === 0 && visibleCount < galleryImages.length ? (
+                <div ref={loadMoreRef} className="h-8 w-full" />
+              ) : null}
+            </div>
           ))}
-          {visibleCount < galleryImages.length ? <div ref={loadMoreRef} className="h-8 w-full" /> : null}
         </div>
       </div>
 
