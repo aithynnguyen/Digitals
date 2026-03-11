@@ -137,11 +137,13 @@ const GalleryPage = () => {
     setLightboxOpen(true);
   };
 
-  const visibleImages = galleryImages.slice(0, visibleCount);
-  const splitIndex = Math.ceil(visibleImages.length / 2);
-  const leftColumn = visibleImages.slice(0, splitIndex).map((image, index) => ({ image, index }));
-  const rightColumn = visibleImages
-    .slice(splitIndex)
+  const splitIndex = Math.ceil(galleryImages.length / 2);
+  const leftColumn = galleryImages
+    .slice(0, Math.min(splitIndex, visibleCount))
+    .map((image, index) => ({ image, index }));
+  const rightColumnVisibleCount = Math.max(0, visibleCount - splitIndex);
+  const rightColumn = galleryImages
+    .slice(splitIndex, splitIndex + rightColumnVisibleCount)
     .map((image, index) => ({ image, index: index + splitIndex }));
 
   return (
