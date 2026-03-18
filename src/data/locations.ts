@@ -227,9 +227,12 @@ export const locations: LocationData[] = [
     country: "Ireland",
     coordinates: [-6.2603, 53.3498],
     images: [
-      { src: "", alt: "Dublin 1" },
-      { src: "", alt: "Dublin 2" },
-      { src: "", alt: "Dublin 3" },
+      { src: "/images/dublin/DSC05386.JPG", alt: "Dublin 1" },
+      { src: "/images/dublin/DSC05395.JPG", alt: "Dublin 2" },
+      { src: "/images/dublin/DSC05382.JPG", alt: "Dublin 3" },
+      { src: "/images/dublin/DSC05388.JPG", alt: "Dublin 4" },
+      { src: "/images/dublin/DSC05404.JPG", alt: "Dublin 5" },
+      { src: "/images/dublin/DSC05422.JPG", alt: "Dublin 6" },
     ],
   },
   // Albania
@@ -239,21 +242,37 @@ export const locations: LocationData[] = [
     country: "Albania",
     coordinates: [19.8187, 41.3275],
     images: [
-      { src: "", alt: "Tirana 1" },
-      { src: "", alt: "Tirana 2" },
-      { src: "", alt: "Tirana 3" },
-    ],
-  },
-  // Lithuania
-  {
-    slug: "kaunas",
-    city: "Kaunas",
-    country: "Lithuania",
-    coordinates: [23.8813, 54.8985],
-    images: [
-      { src: "", alt: "Kaunas 1" },
-      { src: "", alt: "Kaunas 2" },
-      { src: "", alt: "Kaunas 3" },
+      { src: "/images/tirana/DSC05300.JPG", alt: "Tirana 1" },
+      { src: "/images/tirana/DSC05344.JPG", alt: "Tirana 13" },
+
+      { src: "/images/tirana/DSC05320.JPG", alt: "Tirana 4" },
+      { src: "/images/tirana/DSC05357.JPG", alt: "Tirana 16" },
+
+      { src: "/images/tirana/DSC05329.JPG", alt: "Tirana 7" },
+      { src: "/images/tirana/DSC05332.JPG", alt: "Tirana 8" },
+      { src: "/images/tirana/DSC05361.JPG", alt: "Tirana 18" },
+
+      { src: "/images/tirana/DSC05333.JPG", alt: "Tirana 9" },
+      { src: "/images/tirana/DSC05378.JPG", alt: "Tirana 21" },
+
+
+
+      { src: "/images/tirana/DSC05324.JPG", alt: "Tirana 5" },
+      { src: "/images/tirana/DSC05341.JPG", alt: "Tirana 12" },
+
+      { src: "/images/tirana/DSC05353.JPG", alt: "Tirana 14" },
+
+      { src: "/images/tirana/DSC05337.JPG", alt: "Tirana 11" },
+
+      
+
+      { src: "/images/tirana/DSC05319.JPG", alt: "Tirana 3" },
+      { src: "/images/tirana/DSC05356.JPG", alt: "Tirana 15" },
+      { src: "/images/tirana/DSC05365.JPG", alt: "Tirana 19" },
+      { src: "/images/tirana/DSC05336.JPG", alt: "Tirana 10" },
+
+      { src: "/images/tirana/DSC05366.JPG", alt: "Tirana 20" },
+
     ],
   },
   // Portugal
