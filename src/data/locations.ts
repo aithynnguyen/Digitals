@@ -470,7 +470,6 @@ export const locations: LocationData[] = [
       { src: "/images/san-francisco/DSC03365.JPG", alt: "San Francisco 20" },
       { src: "/images/big-sur/DSC02061.jpg", alt: "San Francisco 21" },
       { src: "/images/san-francisco/DSC03377.JPG", alt: "San Francisco 22" },
-      { src: "/images/san-francisco/DSC03379.JPG", alt: "San Francisco 23" },
       { src: "/images/san-francisco/DSC03384.JPG", alt: "San Francisco 24" },
       { src: "/images/san-francisco/DSC03424.JPG", alt: "San Francisco 25" },
       { src: "/images/san-francisco/DSC03426.JPG", alt: "San Francisco 26" },
