@@ -243,36 +243,23 @@ export const locations: LocationData[] = [
     coordinates: [19.8187, 41.3275],
     images: [
       { src: "/images/tirana/DSC05300.JPG", alt: "Tirana 1" },
-      { src: "/images/tirana/DSC05344.JPG", alt: "Tirana 13" },
-
-      { src: "/images/tirana/DSC05320.JPG", alt: "Tirana 4" },
-      { src: "/images/tirana/DSC05357.JPG", alt: "Tirana 16" },
-
-      { src: "/images/tirana/DSC05329.JPG", alt: "Tirana 7" },
-      { src: "/images/tirana/DSC05332.JPG", alt: "Tirana 8" },
-      { src: "/images/tirana/DSC05361.JPG", alt: "Tirana 18" },
-
-      { src: "/images/tirana/DSC05333.JPG", alt: "Tirana 9" },
-      { src: "/images/tirana/DSC05378.JPG", alt: "Tirana 21" },
-
-
-
-      { src: "/images/tirana/DSC05324.JPG", alt: "Tirana 5" },
-      { src: "/images/tirana/DSC05341.JPG", alt: "Tirana 12" },
-
-      { src: "/images/tirana/DSC05353.JPG", alt: "Tirana 14" },
-
-      { src: "/images/tirana/DSC05337.JPG", alt: "Tirana 11" },
-
-      
-
-      { src: "/images/tirana/DSC05319.JPG", alt: "Tirana 3" },
+      { src: "/images/tirana/DSC05344.JPG", alt: "Tirana 2" },
+      { src: "/images/tirana/DSC05320.JPG", alt: "Tirana 3" },
+      { src: "/images/tirana/DSC05357.JPG", alt: "Tirana 4" },
+      { src: "/images/tirana/DSC05329.JPG", alt: "Tirana 5" },
+      { src: "/images/tirana/DSC05332.JPG", alt: "Tirana 6" },
+      { src: "/images/tirana/DSC05361.JPG", alt: "Tirana 7" },
+      { src: "/images/tirana/DSC05333.JPG", alt: "Tirana 8" },
+      { src: "/images/tirana/DSC05378.JPG", alt: "Tirana 9" },
+      { src: "/images/tirana/DSC05324.JPG", alt: "Tirana 10" },
+      { src: "/images/tirana/DSC05341.JPG", alt: "Tirana 11" },
+      { src: "/images/tirana/DSC05353.JPG", alt: "Tirana 12" },
+      { src: "/images/tirana/DSC05337.JPG", alt: "Tirana 13" },
+      { src: "/images/tirana/DSC05319.JPG", alt: "Tirana 14" },
       { src: "/images/tirana/DSC05356.JPG", alt: "Tirana 15" },
-      { src: "/images/tirana/DSC05365.JPG", alt: "Tirana 19" },
-      { src: "/images/tirana/DSC05336.JPG", alt: "Tirana 10" },
-
-      { src: "/images/tirana/DSC05366.JPG", alt: "Tirana 20" },
-
+      { src: "/images/tirana/DSC05365.JPG", alt: "Tirana 16" },
+      { src: "/images/tirana/DSC05336.JPG", alt: "Tirana 17" },
+      { src: "/images/tirana/DSC05366.JPG", alt: "Tirana 18" },
     ],
   },
   // Portugal
@@ -362,9 +349,21 @@ export const locations: LocationData[] = [
     country: "Romania",
     coordinates: [26.1025, 44.4268],
     images: [
-      { src: "", alt: "Bucharest 1" },
-      { src: "", alt: "Bucharest 2" },
-      { src: "", alt: "Bucharest 3" },
+      { src: "/images/bucharest/DSC05435.JPG", alt: "Bucharest 1" },
+      { src: "/images/bucharest/DSC05457.JPG", alt: "Bucharest 2" },
+      { src: "/images/bucharest/DSC05465.JPG", alt: "Bucharest 3" },
+      { src: "/images/bucharest/DSC05476.JPG", alt: "Bucharest 5" },
+      { src: "/images/bucharest/DSC05487.JPG", alt: "Bucharest 6" },
+      { src: "/images/bucharest/DSC05493.JPG", alt: "Bucharest 7" },
+      { src: "/images/bucharest/DSC05495.JPG", alt: "Bucharest 8" },
+      { src: "/images/bucharest/DSC05471.JPG", alt: "Bucharest 4" },
+
+      { src: "/images/bucharest/DSC05496.JPG", alt: "Bucharest 9" },
+      { src: "/images/bucharest/DSC05499.JPG", alt: "Bucharest 10" },
+      { src: "/images/bucharest/DSC05504.JPG", alt: "Bucharest 11" },
+      { src: "/images/bucharest/DSC05507.JPG", alt: "Bucharest 12" },
+      { src: "/images/bucharest/DSC05510.JPG", alt: "Bucharest 13" },
+      { src: "/images/bucharest/DSC05512.JPG", alt: "Bucharest 14" },
     ],
   },
   // UK
