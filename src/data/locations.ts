@@ -62,23 +62,15 @@ export const locations: LocationData[] = [
     coordinates: [-78.3848, 45.8372],
     images: [
       { src: "/images/algonquin-park/DSC03203.JPG", alt: "Algonquin Park 1" },
-      { src: "/images/algonquin-park/DSC03226.JPG", alt: "Algonquin Park 5" },
-
-      { src: "/images/algonquin-park/DSC03209.JPG", alt: "Algonquin Park 2" },
+      { src: "/images/algonquin-park/DSC03226.JPG", alt: "Algonquin Park 2" },
+      { src: "/images/algonquin-park/DSC03209.JPG", alt: "Algonquin Park 3" },
       { src: "/images/algonquin-park/DSC03222.JPG", alt: "Algonquin Park 4" },
-      { src: "/images/algonquin-park/DSC03247.JPG", alt: "Algonquin Park 10" },
-
-
+      { src: "/images/algonquin-park/DSC03247.JPG", alt: "Algonquin Park 5" },
       { src: "/images/algonquin-park/DSC03231.JPG", alt: "Algonquin Park 6" },
-  
-
-      { src: "/images/algonquin-park/DSC03236.JPG", alt: "Algonquin Park 8" },
-      { src: "/images/algonquin-park/DSC03211.JPG", alt: "Algonquin Park 3" },
-
-      { src: "/images/algonquin-park/DSC03232.JPG", alt: "Algonquin Park 7" },
-
-      { src: "/images/algonquin-park/DSC03238.JPG", alt: "Algonquin Park 9" },
-
+      { src: "/images/algonquin-park/DSC03236.JPG", alt: "Algonquin Park 7" },
+      { src: "/images/algonquin-park/DSC03211.JPG", alt: "Algonquin Park 8" },
+      { src: "/images/algonquin-park/DSC03232.JPG", alt: "Algonquin Park 9" },
+      { src: "/images/algonquin-park/DSC03238.JPG", alt: "Algonquin Park 10" },
       { src: "/images/algonquin-park/DSC03257.JPG", alt: "Algonquin Park 11" },
     ],
   },
@@ -352,12 +344,11 @@ export const locations: LocationData[] = [
       { src: "/images/bucharest/DSC05435.JPG", alt: "Bucharest 1" },
       { src: "/images/bucharest/DSC05457.JPG", alt: "Bucharest 2" },
       { src: "/images/bucharest/DSC05465.JPG", alt: "Bucharest 3" },
-      { src: "/images/bucharest/DSC05476.JPG", alt: "Bucharest 5" },
-      { src: "/images/bucharest/DSC05487.JPG", alt: "Bucharest 6" },
-      { src: "/images/bucharest/DSC05493.JPG", alt: "Bucharest 7" },
-      { src: "/images/bucharest/DSC05495.JPG", alt: "Bucharest 8" },
-      { src: "/images/bucharest/DSC05471.JPG", alt: "Bucharest 4" },
-
+      { src: "/images/bucharest/DSC05476.JPG", alt: "Bucharest 4" },
+      { src: "/images/bucharest/DSC05487.JPG", alt: "Bucharest 5" },
+      { src: "/images/bucharest/DSC05493.JPG", alt: "Bucharest 6" },
+      { src: "/images/bucharest/DSC05495.JPG", alt: "Bucharest 7" },
+      { src: "/images/bucharest/DSC05471.JPG", alt: "Bucharest 8" },
       { src: "/images/bucharest/DSC05496.JPG", alt: "Bucharest 9" },
       { src: "/images/bucharest/DSC05499.JPG", alt: "Bucharest 10" },
       { src: "/images/bucharest/DSC05504.JPG", alt: "Bucharest 11" },
@@ -483,10 +474,9 @@ export const locations: LocationData[] = [
       { src: "/images/san-francisco/DSC03384.JPG", alt: "San Francisco 24" },
       { src: "/images/san-francisco/DSC03424.JPG", alt: "San Francisco 25" },
       { src: "/images/san-francisco/DSC03426.JPG", alt: "San Francisco 26" },
-      { src: "/images/big-sur/DSC02152.jpg", alt: "San Francisco 27" },
-      { src: "/images/san-francisco/DSC03602.JPG", alt: "San Francisco 28" },
-      { src: "/images/big-sur/DSC02068.jpg", alt: "San Francisco 29" },
-      { src: "/images/san-francisco/DSC03605.JPG", alt: "San Francisco 30" },
+      { src: "/images/san-francisco/DSC03602.JPG", alt: "San Francisco 27" },
+      { src: "/images/big-sur/DSC02068.jpg", alt: "San Francisco 28" },
+      { src: "/images/san-francisco/DSC03605.JPG", alt: "San Francisco 29" },
 
     ],
   },
